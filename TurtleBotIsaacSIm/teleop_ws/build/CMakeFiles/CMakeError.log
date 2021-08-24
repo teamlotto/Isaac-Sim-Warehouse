@@ -1,0 +1,55 @@
+Determining if the pthread_create exist failed with the following output:
+Change Dir: /home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotIsaacSIm/teleop_ws/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_5a95f/fast"
+/usr/bin/make -f CMakeFiles/cmTC_5a95f.dir/build.make CMakeFiles/cmTC_5a95f.dir/build
+make[1]: Entering directory '/home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotIsaacSIm/teleop_ws/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_5a95f.dir/CheckSymbolExists.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_5a95f.dir/CheckSymbolExists.c.o   -c /home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotIsaacSIm/teleop_ws/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c
+Linking C executable cmTC_5a95f
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_5a95f.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_5a95f.dir/CheckSymbolExists.c.o  -o cmTC_5a95f 
+CMakeFiles/cmTC_5a95f.dir/CheckSymbolExists.c.o: In function `main':
+CheckSymbolExists.c:(.text+0x1b): undefined reference to `pthread_create'
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_5a95f.dir/build.make:97: recipe for target 'cmTC_5a95f' failed
+make[1]: *** [cmTC_5a95f] Error 1
+make[1]: Leaving directory '/home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotIsaacSIm/teleop_ws/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_5a95f/fast' failed
+make: *** [cmTC_5a95f/fast] Error 2
+
+File /home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotIsaacSIm/teleop_ws/build/CMakeFiles/CMakeTmp/CheckSymbolExists.c:
+/* */
+#include <pthread.h>
+
+int main(int argc, char** argv)
+{
+  (void)argv;
+#ifndef pthread_create
+  return ((int*)(&pthread_create))[argc];
+#else
+  (void)argc;
+  return 0;
+#endif
+}
+
+Determining if the function pthread_create exists in the pthreads failed with the following output:
+Change Dir: /home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotIsaacSIm/teleop_ws/build/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_b516a/fast"
+/usr/bin/make -f CMakeFiles/cmTC_b516a.dir/build.make CMakeFiles/cmTC_b516a.dir/build
+make[1]: Entering directory '/home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotIsaacSIm/teleop_ws/build/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_b516a.dir/CheckFunctionExists.c.o
+/usr/bin/cc   -DCHECK_FUNCTION_EXISTS=pthread_create   -o CMakeFiles/cmTC_b516a.dir/CheckFunctionExists.c.o   -c /usr/share/cmake-3.10/Modules/CheckFunctionExists.c
+Linking C executable cmTC_b516a
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_b516a.dir/link.txt --verbose=1
+/usr/bin/cc  -DCHECK_FUNCTION_EXISTS=pthread_create    -rdynamic CMakeFiles/cmTC_b516a.dir/CheckFunctionExists.c.o  -o cmTC_b516a -lpthreads 
+/usr/bin/ld: cannot find -lpthreads
+collect2: error: ld returned 1 exit status
+CMakeFiles/cmTC_b516a.dir/build.make:97: recipe for target 'cmTC_b516a' failed
+make[1]: *** [cmTC_b516a] Error 1
+make[1]: Leaving directory '/home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotIsaacSIm/teleop_ws/build/CMakeFiles/CMakeTmp'
+Makefile:126: recipe for target 'cmTC_b516a/fast' failed
+make: *** [cmTC_b516a/fast] Error 2
+
+
