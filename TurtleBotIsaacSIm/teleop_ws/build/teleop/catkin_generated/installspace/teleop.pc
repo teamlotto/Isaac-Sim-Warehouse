@@ -1,0 +1,8 @@
+prefix=/home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotIsaacSIm/teleop_ws/install
+
+Name: teleop
+Description: Description of teleop
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

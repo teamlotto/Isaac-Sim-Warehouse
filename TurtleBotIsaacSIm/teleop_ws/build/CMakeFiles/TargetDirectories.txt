@@ -35,3 +35,11 @@
 /home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotIsaacSIm/teleop_ws/build/gtest/googlemock/gtest/CMakeFiles/list_install_components.dir
 /home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotIsaacSIm/teleop_ws/build/gtest/googlemock/gtest/CMakeFiles/gtest.dir
 /home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotIsaacSIm/teleop_ws/build/gtest/googlemock/gtest/CMakeFiles/rebuild_cache.dir
+/home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotIsaacSIm/teleop_ws/build/teleop/CMakeFiles/install/strip.dir
+/home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotIsaacSIm/teleop_ws/build/teleop/CMakeFiles/install/local.dir
+/home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotIsaacSIm/teleop_ws/build/teleop/CMakeFiles/test.dir
+/home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotIsaacSIm/teleop_ws/build/teleop/CMakeFiles/list_install_components.dir
+/home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotIsaacSIm/teleop_ws/build/teleop/CMakeFiles/edit_cache.dir
+/home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotIsaacSIm/teleop_ws/build/teleop/CMakeFiles/_catkin_empty_exported_target.dir
+/home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotIsaacSIm/teleop_ws/build/teleop/CMakeFiles/rebuild_cache.dir
+/home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotIsaacSIm/teleop_ws/build/teleop/CMakeFiles/install.dir

@@ -6,6 +6,5 @@
 # testing this directory and lists subdirectories to be tested as well.
 subdirs("gtest")
 subdirs("nav2")
-subdirs("lottoworld_nav")
 subdirs("nav")
 subdirs("description")

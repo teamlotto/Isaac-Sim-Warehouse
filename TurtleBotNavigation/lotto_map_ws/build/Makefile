@@ -753,71 +753,6 @@ geometry_msgs_generate_messages_py/fast:
 .PHONY : geometry_msgs_generate_messages_py/fast
 
 #=============================================================================
-# Target rules for targets named sensor_msgs_generate_messages_eus
-
-# Build rule for target.
-sensor_msgs_generate_messages_eus: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 sensor_msgs_generate_messages_eus
-.PHONY : sensor_msgs_generate_messages_eus
-
-# fast build rule for target.
-sensor_msgs_generate_messages_eus/fast:
-	$(MAKE) -f lottoworld_nav/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build.make lottoworld_nav/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build
-.PHONY : sensor_msgs_generate_messages_eus/fast
-
-#=============================================================================
-# Target rules for targets named sensor_msgs_generate_messages_lisp
-
-# Build rule for target.
-sensor_msgs_generate_messages_lisp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 sensor_msgs_generate_messages_lisp
-.PHONY : sensor_msgs_generate_messages_lisp
-
-# fast build rule for target.
-sensor_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f lottoworld_nav/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build.make lottoworld_nav/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build
-.PHONY : sensor_msgs_generate_messages_lisp/fast
-
-#=============================================================================
-# Target rules for targets named sensor_msgs_generate_messages_nodejs
-
-# Build rule for target.
-sensor_msgs_generate_messages_nodejs: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 sensor_msgs_generate_messages_nodejs
-.PHONY : sensor_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-sensor_msgs_generate_messages_nodejs/fast:
-	$(MAKE) -f lottoworld_nav/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build.make lottoworld_nav/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build
-.PHONY : sensor_msgs_generate_messages_nodejs/fast
-
-#=============================================================================
-# Target rules for targets named sensor_msgs_generate_messages_cpp
-
-# Build rule for target.
-sensor_msgs_generate_messages_cpp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 sensor_msgs_generate_messages_cpp
-.PHONY : sensor_msgs_generate_messages_cpp
-
-# fast build rule for target.
-sensor_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f lottoworld_nav/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build.make lottoworld_nav/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build
-.PHONY : sensor_msgs_generate_messages_cpp/fast
-
-#=============================================================================
-# Target rules for targets named sensor_msgs_generate_messages_py
-
-# Build rule for target.
-sensor_msgs_generate_messages_py: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 sensor_msgs_generate_messages_py
-.PHONY : sensor_msgs_generate_messages_py
-
-# fast build rule for target.
-sensor_msgs_generate_messages_py/fast:
-	$(MAKE) -f lottoworld_nav/CMakeFiles/sensor_msgs_generate_messages_py.dir/build.make lottoworld_nav/CMakeFiles/sensor_msgs_generate_messages_py.dir/build
-.PHONY : sensor_msgs_generate_messages_py/fast
-
-#=============================================================================
 # Target rules for targets named dynamic_reconfigure_generate_messages_lisp
 
 # Build rule for target.
@@ -974,71 +909,6 @@ nav_msgs_generate_messages_lisp/fast:
 .PHONY : nav_msgs_generate_messages_lisp/fast
 
 #=============================================================================
-# Target rules for targets named tf2_msgs_generate_messages_py
-
-# Build rule for target.
-tf2_msgs_generate_messages_py: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 tf2_msgs_generate_messages_py
-.PHONY : tf2_msgs_generate_messages_py
-
-# fast build rule for target.
-tf2_msgs_generate_messages_py/fast:
-	$(MAKE) -f description/CMakeFiles/tf2_msgs_generate_messages_py.dir/build.make description/CMakeFiles/tf2_msgs_generate_messages_py.dir/build
-.PHONY : tf2_msgs_generate_messages_py/fast
-
-#=============================================================================
-# Target rules for targets named tf2_msgs_generate_messages_lisp
-
-# Build rule for target.
-tf2_msgs_generate_messages_lisp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 tf2_msgs_generate_messages_lisp
-.PHONY : tf2_msgs_generate_messages_lisp
-
-# fast build rule for target.
-tf2_msgs_generate_messages_lisp/fast:
-	$(MAKE) -f description/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/build.make description/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/build
-.PHONY : tf2_msgs_generate_messages_lisp/fast
-
-#=============================================================================
-# Target rules for targets named tf_generate_messages_nodejs
-
-# Build rule for target.
-tf_generate_messages_nodejs: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 tf_generate_messages_nodejs
-.PHONY : tf_generate_messages_nodejs
-
-# fast build rule for target.
-tf_generate_messages_nodejs/fast:
-	$(MAKE) -f description/CMakeFiles/tf_generate_messages_nodejs.dir/build.make description/CMakeFiles/tf_generate_messages_nodejs.dir/build
-.PHONY : tf_generate_messages_nodejs/fast
-
-#=============================================================================
-# Target rules for targets named tf2_msgs_generate_messages_eus
-
-# Build rule for target.
-tf2_msgs_generate_messages_eus: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 tf2_msgs_generate_messages_eus
-.PHONY : tf2_msgs_generate_messages_eus
-
-# fast build rule for target.
-tf2_msgs_generate_messages_eus/fast:
-	$(MAKE) -f description/CMakeFiles/tf2_msgs_generate_messages_eus.dir/build.make description/CMakeFiles/tf2_msgs_generate_messages_eus.dir/build
-.PHONY : tf2_msgs_generate_messages_eus/fast
-
-#=============================================================================
-# Target rules for targets named tf_generate_messages_lisp
-
-# Build rule for target.
-tf_generate_messages_lisp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 tf_generate_messages_lisp
-.PHONY : tf_generate_messages_lisp
-
-# fast build rule for target.
-tf_generate_messages_lisp/fast:
-	$(MAKE) -f description/CMakeFiles/tf_generate_messages_lisp.dir/build.make description/CMakeFiles/tf_generate_messages_lisp.dir/build
-.PHONY : tf_generate_messages_lisp/fast
-
-#=============================================================================
 # Target rules for targets named tf2_msgs_generate_messages_cpp
 
 # Build rule for target.
@@ -1065,6 +935,97 @@ std_srvs_generate_messages_cpp/fast:
 .PHONY : std_srvs_generate_messages_cpp/fast
 
 #=============================================================================
+# Target rules for targets named tf_generate_messages_cpp
+
+# Build rule for target.
+tf_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 tf_generate_messages_cpp
+.PHONY : tf_generate_messages_cpp
+
+# fast build rule for target.
+tf_generate_messages_cpp/fast:
+	$(MAKE) -f description/CMakeFiles/tf_generate_messages_cpp.dir/build.make description/CMakeFiles/tf_generate_messages_cpp.dir/build
+.PHONY : tf_generate_messages_cpp/fast
+
+#=============================================================================
+# Target rules for targets named sensor_msgs_generate_messages_eus
+
+# Build rule for target.
+sensor_msgs_generate_messages_eus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 sensor_msgs_generate_messages_eus
+.PHONY : sensor_msgs_generate_messages_eus
+
+# fast build rule for target.
+sensor_msgs_generate_messages_eus/fast:
+	$(MAKE) -f description/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build.make description/CMakeFiles/sensor_msgs_generate_messages_eus.dir/build
+.PHONY : sensor_msgs_generate_messages_eus/fast
+
+#=============================================================================
+# Target rules for targets named sensor_msgs_generate_messages_cpp
+
+# Build rule for target.
+sensor_msgs_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 sensor_msgs_generate_messages_cpp
+.PHONY : sensor_msgs_generate_messages_cpp
+
+# fast build rule for target.
+sensor_msgs_generate_messages_cpp/fast:
+	$(MAKE) -f description/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build.make description/CMakeFiles/sensor_msgs_generate_messages_cpp.dir/build
+.PHONY : sensor_msgs_generate_messages_cpp/fast
+
+#=============================================================================
+# Target rules for targets named map_msgs_generate_messages_cpp
+
+# Build rule for target.
+map_msgs_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 map_msgs_generate_messages_cpp
+.PHONY : map_msgs_generate_messages_cpp
+
+# fast build rule for target.
+map_msgs_generate_messages_cpp/fast:
+	$(MAKE) -f description/CMakeFiles/map_msgs_generate_messages_cpp.dir/build.make description/CMakeFiles/map_msgs_generate_messages_cpp.dir/build
+.PHONY : map_msgs_generate_messages_cpp/fast
+
+#=============================================================================
+# Target rules for targets named tf_generate_messages_lisp
+
+# Build rule for target.
+tf_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 tf_generate_messages_lisp
+.PHONY : tf_generate_messages_lisp
+
+# fast build rule for target.
+tf_generate_messages_lisp/fast:
+	$(MAKE) -f description/CMakeFiles/tf_generate_messages_lisp.dir/build.make description/CMakeFiles/tf_generate_messages_lisp.dir/build
+.PHONY : tf_generate_messages_lisp/fast
+
+#=============================================================================
+# Target rules for targets named tf2_msgs_generate_messages_eus
+
+# Build rule for target.
+tf2_msgs_generate_messages_eus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 tf2_msgs_generate_messages_eus
+.PHONY : tf2_msgs_generate_messages_eus
+
+# fast build rule for target.
+tf2_msgs_generate_messages_eus/fast:
+	$(MAKE) -f description/CMakeFiles/tf2_msgs_generate_messages_eus.dir/build.make description/CMakeFiles/tf2_msgs_generate_messages_eus.dir/build
+.PHONY : tf2_msgs_generate_messages_eus/fast
+
+#=============================================================================
+# Target rules for targets named sensor_msgs_generate_messages_nodejs
+
+# Build rule for target.
+sensor_msgs_generate_messages_nodejs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 sensor_msgs_generate_messages_nodejs
+.PHONY : sensor_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+sensor_msgs_generate_messages_nodejs/fast:
+	$(MAKE) -f description/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build.make description/CMakeFiles/sensor_msgs_generate_messages_nodejs.dir/build
+.PHONY : sensor_msgs_generate_messages_nodejs/fast
+
+#=============================================================================
 # Target rules for targets named rviz_generate_messages_cpp
 
 # Build rule for target.
@@ -1089,19 +1050,6 @@ description_xacro_generated_to_devel_space_: cmake_check_build_system
 description_xacro_generated_to_devel_space_/fast:
 	$(MAKE) -f description/CMakeFiles/description_xacro_generated_to_devel_space_.dir/build.make description/CMakeFiles/description_xacro_generated_to_devel_space_.dir/build
 .PHONY : description_xacro_generated_to_devel_space_/fast
-
-#=============================================================================
-# Target rules for targets named tf_generate_messages_py
-
-# Build rule for target.
-tf_generate_messages_py: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 tf_generate_messages_py
-.PHONY : tf_generate_messages_py
-
-# fast build rule for target.
-tf_generate_messages_py/fast:
-	$(MAKE) -f description/CMakeFiles/tf_generate_messages_py.dir/build.make description/CMakeFiles/tf_generate_messages_py.dir/build
-.PHONY : tf_generate_messages_py/fast
 
 #=============================================================================
 # Target rules for targets named map_msgs_generate_messages_eus
@@ -1143,56 +1091,43 @@ std_srvs_generate_messages_py/fast:
 .PHONY : std_srvs_generate_messages_py/fast
 
 #=============================================================================
-# Target rules for targets named visualization_msgs_generate_messages_cpp
+# Target rules for targets named tf_generate_messages_py
 
 # Build rule for target.
-visualization_msgs_generate_messages_cpp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 visualization_msgs_generate_messages_cpp
-.PHONY : visualization_msgs_generate_messages_cpp
+tf_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 tf_generate_messages_py
+.PHONY : tf_generate_messages_py
 
 # fast build rule for target.
-visualization_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f description/CMakeFiles/visualization_msgs_generate_messages_cpp.dir/build.make description/CMakeFiles/visualization_msgs_generate_messages_cpp.dir/build
-.PHONY : visualization_msgs_generate_messages_cpp/fast
+tf_generate_messages_py/fast:
+	$(MAKE) -f description/CMakeFiles/tf_generate_messages_py.dir/build.make description/CMakeFiles/tf_generate_messages_py.dir/build
+.PHONY : tf_generate_messages_py/fast
 
 #=============================================================================
-# Target rules for targets named tf_generate_messages_cpp
+# Target rules for targets named sensor_msgs_generate_messages_py
 
 # Build rule for target.
-tf_generate_messages_cpp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 tf_generate_messages_cpp
-.PHONY : tf_generate_messages_cpp
+sensor_msgs_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 sensor_msgs_generate_messages_py
+.PHONY : sensor_msgs_generate_messages_py
 
 # fast build rule for target.
-tf_generate_messages_cpp/fast:
-	$(MAKE) -f description/CMakeFiles/tf_generate_messages_cpp.dir/build.make description/CMakeFiles/tf_generate_messages_cpp.dir/build
-.PHONY : tf_generate_messages_cpp/fast
+sensor_msgs_generate_messages_py/fast:
+	$(MAKE) -f description/CMakeFiles/sensor_msgs_generate_messages_py.dir/build.make description/CMakeFiles/sensor_msgs_generate_messages_py.dir/build
+.PHONY : sensor_msgs_generate_messages_py/fast
 
 #=============================================================================
-# Target rules for targets named map_msgs_generate_messages_cpp
+# Target rules for targets named tf_generate_messages_nodejs
 
 # Build rule for target.
-map_msgs_generate_messages_cpp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 map_msgs_generate_messages_cpp
-.PHONY : map_msgs_generate_messages_cpp
+tf_generate_messages_nodejs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 tf_generate_messages_nodejs
+.PHONY : tf_generate_messages_nodejs
 
 # fast build rule for target.
-map_msgs_generate_messages_cpp/fast:
-	$(MAKE) -f description/CMakeFiles/map_msgs_generate_messages_cpp.dir/build.make description/CMakeFiles/map_msgs_generate_messages_cpp.dir/build
-.PHONY : map_msgs_generate_messages_cpp/fast
-
-#=============================================================================
-# Target rules for targets named tf2_msgs_generate_messages_nodejs
-
-# Build rule for target.
-tf2_msgs_generate_messages_nodejs: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 tf2_msgs_generate_messages_nodejs
-.PHONY : tf2_msgs_generate_messages_nodejs
-
-# fast build rule for target.
-tf2_msgs_generate_messages_nodejs/fast:
-	$(MAKE) -f description/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/build.make description/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/build
-.PHONY : tf2_msgs_generate_messages_nodejs/fast
+tf_generate_messages_nodejs/fast:
+	$(MAKE) -f description/CMakeFiles/tf_generate_messages_nodejs.dir/build.make description/CMakeFiles/tf_generate_messages_nodejs.dir/build
+.PHONY : tf_generate_messages_nodejs/fast
 
 #=============================================================================
 # Target rules for targets named rviz_generate_messages_lisp
@@ -1208,6 +1143,19 @@ rviz_generate_messages_lisp/fast:
 .PHONY : rviz_generate_messages_lisp/fast
 
 #=============================================================================
+# Target rules for targets named tf2_msgs_generate_messages_nodejs
+
+# Build rule for target.
+tf2_msgs_generate_messages_nodejs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 tf2_msgs_generate_messages_nodejs
+.PHONY : tf2_msgs_generate_messages_nodejs
+
+# fast build rule for target.
+tf2_msgs_generate_messages_nodejs/fast:
+	$(MAKE) -f description/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/build.make description/CMakeFiles/tf2_msgs_generate_messages_nodejs.dir/build
+.PHONY : tf2_msgs_generate_messages_nodejs/fast
+
+#=============================================================================
 # Target rules for targets named rviz_generate_messages_py
 
 # Build rule for target.
@@ -1219,6 +1167,45 @@ rviz_generate_messages_py: cmake_check_build_system
 rviz_generate_messages_py/fast:
 	$(MAKE) -f description/CMakeFiles/rviz_generate_messages_py.dir/build.make description/CMakeFiles/rviz_generate_messages_py.dir/build
 .PHONY : rviz_generate_messages_py/fast
+
+#=============================================================================
+# Target rules for targets named tf2_msgs_generate_messages_py
+
+# Build rule for target.
+tf2_msgs_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 tf2_msgs_generate_messages_py
+.PHONY : tf2_msgs_generate_messages_py
+
+# fast build rule for target.
+tf2_msgs_generate_messages_py/fast:
+	$(MAKE) -f description/CMakeFiles/tf2_msgs_generate_messages_py.dir/build.make description/CMakeFiles/tf2_msgs_generate_messages_py.dir/build
+.PHONY : tf2_msgs_generate_messages_py/fast
+
+#=============================================================================
+# Target rules for targets named tf2_msgs_generate_messages_lisp
+
+# Build rule for target.
+tf2_msgs_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 tf2_msgs_generate_messages_lisp
+.PHONY : tf2_msgs_generate_messages_lisp
+
+# fast build rule for target.
+tf2_msgs_generate_messages_lisp/fast:
+	$(MAKE) -f description/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/build.make description/CMakeFiles/tf2_msgs_generate_messages_lisp.dir/build
+.PHONY : tf2_msgs_generate_messages_lisp/fast
+
+#=============================================================================
+# Target rules for targets named visualization_msgs_generate_messages_cpp
+
+# Build rule for target.
+visualization_msgs_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 visualization_msgs_generate_messages_cpp
+.PHONY : visualization_msgs_generate_messages_cpp
+
+# fast build rule for target.
+visualization_msgs_generate_messages_cpp/fast:
+	$(MAKE) -f description/CMakeFiles/visualization_msgs_generate_messages_cpp.dir/build.make description/CMakeFiles/visualization_msgs_generate_messages_cpp.dir/build
+.PHONY : visualization_msgs_generate_messages_cpp/fast
 
 #=============================================================================
 # Target rules for targets named visualization_msgs_generate_messages_eus
@@ -1351,6 +1338,19 @@ map_msgs_generate_messages_nodejs/fast:
 .PHONY : map_msgs_generate_messages_nodejs/fast
 
 #=============================================================================
+# Target rules for targets named sensor_msgs_generate_messages_lisp
+
+# Build rule for target.
+sensor_msgs_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 sensor_msgs_generate_messages_lisp
+.PHONY : sensor_msgs_generate_messages_lisp
+
+# fast build rule for target.
+sensor_msgs_generate_messages_lisp/fast:
+	$(MAKE) -f description/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build.make description/CMakeFiles/sensor_msgs_generate_messages_lisp.dir/build
+.PHONY : sensor_msgs_generate_messages_lisp/fast
+
+#=============================================================================
 # Target rules for targets named std_srvs_generate_messages_eus
 
 # Build rule for target.
@@ -1434,11 +1434,6 @@ help:
 	@echo "... geometry_msgs_generate_messages_cpp"
 	@echo "... geometry_msgs_generate_messages_lisp"
 	@echo "... geometry_msgs_generate_messages_py"
-	@echo "... sensor_msgs_generate_messages_eus"
-	@echo "... sensor_msgs_generate_messages_lisp"
-	@echo "... sensor_msgs_generate_messages_nodejs"
-	@echo "... sensor_msgs_generate_messages_cpp"
-	@echo "... sensor_msgs_generate_messages_py"
 	@echo "... dynamic_reconfigure_generate_messages_lisp"
 	@echo "... dynamic_reconfigure_generate_messages_eus"
 	@echo "... move_base_gencfg"
@@ -1451,25 +1446,29 @@ help:
 	@echo "... nav_msgs_generate_messages_nodejs"
 	@echo "... nav_msgs_generate_messages_py"
 	@echo "... nav_msgs_generate_messages_lisp"
-	@echo "... tf2_msgs_generate_messages_py"
-	@echo "... tf2_msgs_generate_messages_lisp"
-	@echo "... tf_generate_messages_nodejs"
-	@echo "... tf2_msgs_generate_messages_eus"
-	@echo "... tf_generate_messages_lisp"
 	@echo "... tf2_msgs_generate_messages_cpp"
 	@echo "... std_srvs_generate_messages_cpp"
+	@echo "... tf_generate_messages_cpp"
+	@echo "... sensor_msgs_generate_messages_eus"
+	@echo "... sensor_msgs_generate_messages_cpp"
+	@echo "... map_msgs_generate_messages_cpp"
+	@echo "... tf_generate_messages_lisp"
+	@echo "... tf2_msgs_generate_messages_eus"
+	@echo "... sensor_msgs_generate_messages_nodejs"
 	@echo "... rviz_generate_messages_cpp"
 	@echo "... description_xacro_generated_to_devel_space_"
-	@echo "... tf_generate_messages_py"
 	@echo "... map_msgs_generate_messages_eus"
 	@echo "... rviz_generate_messages_nodejs"
 	@echo "... std_srvs_generate_messages_py"
-	@echo "... visualization_msgs_generate_messages_cpp"
-	@echo "... tf_generate_messages_cpp"
-	@echo "... map_msgs_generate_messages_cpp"
-	@echo "... tf2_msgs_generate_messages_nodejs"
+	@echo "... tf_generate_messages_py"
+	@echo "... sensor_msgs_generate_messages_py"
+	@echo "... tf_generate_messages_nodejs"
 	@echo "... rviz_generate_messages_lisp"
+	@echo "... tf2_msgs_generate_messages_nodejs"
 	@echo "... rviz_generate_messages_py"
+	@echo "... tf2_msgs_generate_messages_py"
+	@echo "... tf2_msgs_generate_messages_lisp"
+	@echo "... visualization_msgs_generate_messages_cpp"
 	@echo "... visualization_msgs_generate_messages_eus"
 	@echo "... rviz_generate_messages_eus"
 	@echo "... std_srvs_generate_messages_nodejs"
@@ -1480,6 +1479,7 @@ help:
 	@echo "... map_msgs_generate_messages_lisp"
 	@echo "... tf_generate_messages_eus"
 	@echo "... map_msgs_generate_messages_nodejs"
+	@echo "... sensor_msgs_generate_messages_lisp"
 	@echo "... std_srvs_generate_messages_eus"
 	@echo "... std_srvs_generate_messages_lisp"
 .PHONY : help

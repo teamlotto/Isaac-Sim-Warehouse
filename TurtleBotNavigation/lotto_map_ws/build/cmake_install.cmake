@@ -132,7 +132,6 @@ if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build/gtest/cmake_install.cmake")
   include("/home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build/nav2/cmake_install.cmake")
-  include("/home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build/lottoworld_nav/cmake_install.cmake")
   include("/home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build/nav/cmake_install.cmake")
   include("/home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build/description/cmake_install.cmake")
 
