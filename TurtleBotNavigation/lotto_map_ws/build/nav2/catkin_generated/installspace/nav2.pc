@@ -1,8 +1,0 @@
-prefix=/home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/install
-
-Name: nav2
-Description: Description of nav2
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

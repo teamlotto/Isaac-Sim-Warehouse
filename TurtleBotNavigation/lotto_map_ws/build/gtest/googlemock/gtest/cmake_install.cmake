@@ -2,7 +2,7 @@
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 

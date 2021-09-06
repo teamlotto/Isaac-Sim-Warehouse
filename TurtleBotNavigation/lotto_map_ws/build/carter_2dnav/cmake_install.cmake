@@ -1,8 +1,8 @@
-# Install script for directory: /home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/src/carter_2dnav
+# Install script for directory: /home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/src/carter_2dnav
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/install")
+  set(CMAKE_INSTALL_PREFIX "/home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/install")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -38,17 +38,17 @@ if(NOT DEFINED CMAKE_CROSSCOMPILING)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build/carter_2dnav/catkin_generated/installspace/carter_2dnav.pc")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/pkgconfig" TYPE FILE FILES "/home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build/carter_2dnav/catkin_generated/installspace/carter_2dnav.pc")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/carter_2dnav/cmake" TYPE FILE FILES
-    "/home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build/carter_2dnav/catkin_generated/installspace/carter_2dnavConfig.cmake"
-    "/home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build/carter_2dnav/catkin_generated/installspace/carter_2dnavConfig-version.cmake"
+    "/home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build/carter_2dnav/catkin_generated/installspace/carter_2dnavConfig.cmake"
+    "/home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build/carter_2dnav/catkin_generated/installspace/carter_2dnavConfig-version.cmake"
     )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/carter_2dnav" TYPE FILE FILES "/home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/src/carter_2dnav/package.xml")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/carter_2dnav" TYPE FILE FILES "/home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/src/carter_2dnav/package.xml")
 endif()
 

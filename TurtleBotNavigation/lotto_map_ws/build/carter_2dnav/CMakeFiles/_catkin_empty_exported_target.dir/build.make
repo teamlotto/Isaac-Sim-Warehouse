@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/src
+CMAKE_SOURCE_DIR = /home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build
+CMAKE_BINARY_DIR = /home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build
 
 # Utility rule file for _catkin_empty_exported_target.
 
@@ -63,10 +63,10 @@ carter_2dnav/CMakeFiles/_catkin_empty_exported_target.dir/build: _catkin_empty_e
 .PHONY : carter_2dnav/CMakeFiles/_catkin_empty_exported_target.dir/build
 
 carter_2dnav/CMakeFiles/_catkin_empty_exported_target.dir/clean:
-	cd /home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build/carter_2dnav && $(CMAKE_COMMAND) -P CMakeFiles/_catkin_empty_exported_target.dir/cmake_clean.cmake
+	cd /home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build/carter_2dnav && $(CMAKE_COMMAND) -P CMakeFiles/_catkin_empty_exported_target.dir/cmake_clean.cmake
 .PHONY : carter_2dnav/CMakeFiles/_catkin_empty_exported_target.dir/clean
 
 carter_2dnav/CMakeFiles/_catkin_empty_exported_target.dir/depend:
-	cd /home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/src /home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/src/carter_2dnav /home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build /home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build/carter_2dnav /home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build/carter_2dnav/CMakeFiles/_catkin_empty_exported_target.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/src /home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/src/carter_2dnav /home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build /home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build/carter_2dnav /home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build/carter_2dnav/CMakeFiles/_catkin_empty_exported_target.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : carter_2dnav/CMakeFiles/_catkin_empty_exported_target.dir/depend
 

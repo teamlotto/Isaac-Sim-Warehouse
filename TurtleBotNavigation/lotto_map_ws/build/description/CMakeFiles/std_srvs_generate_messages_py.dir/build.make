@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/src
+CMAKE_SOURCE_DIR = /home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build
+CMAKE_BINARY_DIR = /home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build
 
 # Utility rule file for std_srvs_generate_messages_py.
 
@@ -63,10 +63,10 @@ description/CMakeFiles/std_srvs_generate_messages_py.dir/build: std_srvs_generat
 .PHONY : description/CMakeFiles/std_srvs_generate_messages_py.dir/build
 
 description/CMakeFiles/std_srvs_generate_messages_py.dir/clean:
-	cd /home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build/description && $(CMAKE_COMMAND) -P CMakeFiles/std_srvs_generate_messages_py.dir/cmake_clean.cmake
+	cd /home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build/description && $(CMAKE_COMMAND) -P CMakeFiles/std_srvs_generate_messages_py.dir/cmake_clean.cmake
 .PHONY : description/CMakeFiles/std_srvs_generate_messages_py.dir/clean
 
 description/CMakeFiles/std_srvs_generate_messages_py.dir/depend:
-	cd /home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/src /home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/src/description /home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build /home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build/description /home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build/description/CMakeFiles/std_srvs_generate_messages_py.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/src /home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/src/description /home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build /home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build/description /home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build/description/CMakeFiles/std_srvs_generate_messages_py.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : description/CMakeFiles/std_srvs_generate_messages_py.dir/depend
 

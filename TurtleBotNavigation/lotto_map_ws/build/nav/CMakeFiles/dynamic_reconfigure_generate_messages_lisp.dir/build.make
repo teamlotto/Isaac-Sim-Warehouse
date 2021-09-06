@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/src
+CMAKE_SOURCE_DIR = /home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build
+CMAKE_BINARY_DIR = /home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build
 
 # Utility rule file for dynamic_reconfigure_generate_messages_lisp.
 
@@ -63,10 +63,10 @@ nav/CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/build: dynamic_rec
 .PHONY : nav/CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/build
 
 nav/CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/clean:
-	cd /home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build/nav && $(CMAKE_COMMAND) -P CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/cmake_clean.cmake
+	cd /home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build/nav && $(CMAKE_COMMAND) -P CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/cmake_clean.cmake
 .PHONY : nav/CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/clean
 
 nav/CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/depend:
-	cd /home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/src /home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/src/nav /home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build /home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build/nav /home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build/nav/CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/src /home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/src/nav /home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build /home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build/nav /home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build/nav/CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : nav/CMakeFiles/dynamic_reconfigure_generate_messages_lisp.dir/depend
 

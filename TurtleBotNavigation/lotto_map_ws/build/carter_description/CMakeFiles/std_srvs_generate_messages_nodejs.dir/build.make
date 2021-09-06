@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/src
+CMAKE_SOURCE_DIR = /home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/src
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build
+CMAKE_BINARY_DIR = /home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build
 
 # Utility rule file for std_srvs_generate_messages_nodejs.
 
@@ -63,10 +63,10 @@ carter_description/CMakeFiles/std_srvs_generate_messages_nodejs.dir/build: std_s
 .PHONY : carter_description/CMakeFiles/std_srvs_generate_messages_nodejs.dir/build
 
 carter_description/CMakeFiles/std_srvs_generate_messages_nodejs.dir/clean:
-	cd /home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build/carter_description && $(CMAKE_COMMAND) -P CMakeFiles/std_srvs_generate_messages_nodejs.dir/cmake_clean.cmake
+	cd /home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build/carter_description && $(CMAKE_COMMAND) -P CMakeFiles/std_srvs_generate_messages_nodejs.dir/cmake_clean.cmake
 .PHONY : carter_description/CMakeFiles/std_srvs_generate_messages_nodejs.dir/clean
 
 carter_description/CMakeFiles/std_srvs_generate_messages_nodejs.dir/depend:
-	cd /home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/src /home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/src/carter_description /home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build /home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build/carter_description /home/cj/isaac-sim-prj/git_lone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build/carter_description/CMakeFiles/std_srvs_generate_messages_nodejs.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/src /home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/src/carter_description /home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build /home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build/carter_description /home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/TurtleBotNavigation/lotto_map_ws/build/carter_description/CMakeFiles/std_srvs_generate_messages_nodejs.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : carter_description/CMakeFiles/std_srvs_generate_messages_nodejs.dir/depend
 
