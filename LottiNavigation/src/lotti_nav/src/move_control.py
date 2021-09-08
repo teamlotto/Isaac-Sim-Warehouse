@@ -9,7 +9,7 @@ class MoveController:
         self.ros_msg_client = actionlib.SimpleActionClient("move_base", MoveBaseAction)
         self.ros_msg_client.wait_for_server()
 
-    def goal_pose(self, pose):
+    def goal_pose(self, pose: list) -> MoveBaseGoal:
         goal_pose = MoveBaseGoal()
         goal_pose.target_pose.header.frame_id = "map"
         goal_pose.target_pose.header.stamp = rospy.Time.now()
@@ -28,7 +28,7 @@ class MoveController:
         self.ros_msg_client.send_goal(goal)
         self.ros_msg_client.wait_for_result(rospy.Duration(duration))
 
-    def move_goods_zone(self, pose, duration=60):
+    def move_goods_zone(self, pose: list, duration: int = 60) -> bool:
         rospy.loginfo("Go to Move Goods Zone")
         self.move_to_goal(pose, duration)
 
@@ -39,7 +39,7 @@ class MoveController:
             rospy.loginfo("LOTTI is not arrived in goodsZone")
             return False
 
-    def move_load_zone(self, pose, duration=60):
+    def move_load_zone(self, pose: list, duration: int = 60) -> bool:
         rospy.loginfo("Go to Load Zone")
         self.move_to_goal(pose, duration)
 
@@ -50,7 +50,7 @@ class MoveController:
             rospy.loginfo("LOTTI is not arrived in LoadZone")
             return False
 
-    def move_wait_zone(self, pose, duration=60):
+    def move_wait_zone(self, pose: list, duration: int = 60) -> bool:
         rospy.loginfo("Go to Wait Zone")
         self.move_to_goal(pose, duration)
 
