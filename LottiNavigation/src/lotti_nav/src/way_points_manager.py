@@ -18,14 +18,18 @@ class WayPointsManager:
     def get_goods_pos(self, name: str) -> tuple:
         try:
             position = self.goods_zone_position[name]
-        except UnboundLocalError as e:
+        except UnboundLocalError:
+            return -1
+        except KeyError:
             return -1
         return position
 
     def get_wait_pos(self, name: str) -> tuple:
         try:
             position = self.wait_zone_position[name]
-        except UnboundLocalError as e:
+        except UnboundLocalError:
+            return -1
+        except KeyError:
             return -1
         return position
 
@@ -36,9 +40,59 @@ if __name__ == "__main__":
     zone_manage = WayPointsManager()
     
     # get_goods_pos test area
-    if zone_manage.get_goods_pos("goods_zone2") != -1:
-        print(True)
-    if zone_manage.get_goods_pos("goods_zone3") != -1:
-        print(True)
-    print(zone_manage.get_wait_pos("wait_zone1"))
-    print(zone_manage.get_goods_pos("goods_zone5"))
+    result = zone_manage.get_goods_pos("goods_zone2")
+    if result == (1,1):
+        print("test in success")
+    elif result == -1:
+        print("exceptional in success")
+    else:
+        print("test failed") 
+
+    result = zone_manage.get_goods_pos("goods_zone3")
+    if result == (2,2):
+        print("test in success")
+    elif result == -1:
+        print("exceptional in success")
+    else:
+        print("test failed") 
+    
+    result = zone_manage.get_goods_pos("goods_zone5")
+    if result == (1,1):
+        print("test in success")
+    elif result == -1:
+        print("exceptional in success")
+    else:
+        print("test failed") 
+
+    result = zone_manage.get_goods_pos(1)
+    if result == (1,1):
+        print("test in success")
+    elif result == -1:
+        print("exceptional in success")
+    else:
+        print("test failed") 
+
+    #get_wait_pos test area
+    result = zone_manage.get_wait_pos("wait_zone1")
+    if result == (0,0):
+        print("test in success")
+    elif result == -1:
+        print("exceptional in success")
+    else:
+        print("test failed")
+
+    result = zone_manage.get_wait_pos("zone1")
+    if result == (0,0):
+        print("test in success")
+    elif result == -1:
+        print("exceptional in success")
+    else:
+        print("test failed")
+
+    result = zone_manage.get_wait_pos(1)
+    if result == (0,0):
+        print("test in success")
+    elif result == -1:
+        print("exceptional in success")
+    else:
+        print("test failed")
