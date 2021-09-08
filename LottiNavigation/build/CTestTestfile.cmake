@@ -6,3 +6,5 @@
 # testing this directory and lists subdirectories to be tested as well.
 subdirs("gtest")
 subdirs("lotti_nav")
+subdirs("carter_2dnav")
+subdirs("carter_description")
