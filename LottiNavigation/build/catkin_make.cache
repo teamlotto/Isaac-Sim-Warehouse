@@ -1,2 +1,2 @@
-
+lotti_nav
 -DCATKIN_DEVEL_PREFIX=/home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/LottiNavigation/devel -DCMAKE_INSTALL_PREFIX=/home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/LottiNavigation/install -G Unix Makefiles

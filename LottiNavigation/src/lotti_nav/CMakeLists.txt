@@ -9,10 +9,10 @@ project(lotti_nav)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   geometry_msgs
-  move_base_msgs
   roscpp
   rospy
   sensor_msgs
+  actionlib_msgs
 )
 
 ## System dependencies are found with CMake's conventions
