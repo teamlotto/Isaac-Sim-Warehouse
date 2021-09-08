@@ -6,3 +6,5 @@
 - TransPorter
 - LOTTI
 - Carter
+# LottiNavigation catkin
+- catkin_create_pkg LottiNavigation rospy roscpp actionlib geometry_msgs sensor_msgs
