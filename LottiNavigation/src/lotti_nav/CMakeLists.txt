@@ -8,8 +8,8 @@ project(lotti_nav)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
+  actionlib
   geometry_msgs
-  move_base_msgs
   roscpp
   rospy
   sensor_msgs
@@ -72,7 +72,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## Generate added messages and services with any dependencies listed here
 # generate_messages(
 #   DEPENDENCIES
-#   geometry_msgs#   move_base_msgs#   sensor_msgs
+#   geometry_msgs#   sensor_msgs
 # )
 
 ################################################
@@ -107,7 +107,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES lotti_nav
-#  CATKIN_DEPENDS geometry_msgs move_base_msgs roscpp rospy sensor_msgs
+#  CATKIN_DEPENDS actionlib geometry_msgs roscpp rospy sensor_msgs
 #  DEPENDS system_lib
 )
 
