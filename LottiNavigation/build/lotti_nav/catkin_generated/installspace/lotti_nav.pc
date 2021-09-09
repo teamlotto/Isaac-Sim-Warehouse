@@ -3,6 +3,6 @@ prefix=/home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/LottiNavigation/inst
 Name: lotti_nav
 Description: Description of lotti_nav
 Version: 0.0.0
-Cflags: 
+Cflags: -I${prefix}/include
 Libs: -L${prefix}/lib 
 Requires: 

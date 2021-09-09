@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
+from logging import error
 from rospy.core import rospyinfo
 from state import StateManager
 from move_control import MoveController
 from way_points_manager import WayPointsManager
 from std_msgs.msg import String
+from lotti_nav.srv import WhereIgo
 import rospy
 
 class Lotti:
@@ -12,27 +14,40 @@ class Lotti:
         self.move_controller = MoveController()
         self.state = StateManager.Wait
         self.destination = None
+        self.first_operate = True
 
-    def request_destination(self, timeout=None):
-        def dest_callback(msg):
-            self.destination = msg.data
-        pub = rospy.Publisher('where', String, queue_size=1)
-        pub.publish("Where I go ?")
-        sub = rospy.Subscriber('where', String, callback=dest_callback)
-        rospy.loginfo("Wait for destination")
-        rospy.wait_for_message('where', String, timeout=timeout)
+    def request_destination(self, request, timeout=10):
+        try:
+            rospy.loginfo("Checking Service Server ...")
+            rospy.wait_for_service("Where_I_go", timeout=timeout)
+            rospy.loginfo("Success Checking Service Server !")
+            des_requester = rospy.ServiceProxy("Where_I_go", WhereIgo)
+            rospy.loginfo(f"Lotti request destination Where I go ?")
+            destination = des_requester(request).destination
+            rospy.loginfo(f"Lotti was Recevied destination {destination}")
+        except rospy.ServiceException as e:
+            rospy.loginfo(f"Error : {e}")
+            destination = None
+
+        return destination
 
     def operate_wait_case(self, wait_zone: str = "wait_zone1"):
-        pose = self.zone_manager.get_wait_pose(wait_zone)
-        ret = self.move_controller.move_wait_zone(pose)
-        self.request_destination()
+        rospy.loginfo(f"Lotti State is {self.state}")
+        if self.first_operate:
+            self.first_operate = False
+            pass
+        else:
+            self.destination = self.request_destination(1)
 
-        if self.destination is not None:
+        if self.destination is None:
+            pose = self.zone_manager.get_wait_pose(wait_zone)
+            _ = self.move_controller.move_wait_zone(pose)
+        else:
             self.state = StateManager.Drive
     
     def operate_drive_case(self):
-        rospy.loginfo(f"destination : {self.destination}")
-        self.destination = 'goods_zone2' if self.destination is None else self.destination
+        rospy.loginfo(f"Lotti State is {self.state}")
+        rospy.loginfo(f"Destination is : {self.destination}")
         pose = self.zone_manager.get_goods_pose(self.destination)
         ret = self.move_controller.move_goods_zone(pose)
         if ret:

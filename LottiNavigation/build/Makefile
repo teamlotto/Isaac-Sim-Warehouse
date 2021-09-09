@@ -285,6 +285,123 @@ gtest/fast:
 .PHONY : gtest/fast
 
 #=============================================================================
+# Target rules for targets named lotti_nav_genpy
+
+# Build rule for target.
+lotti_nav_genpy: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 lotti_nav_genpy
+.PHONY : lotti_nav_genpy
+
+# fast build rule for target.
+lotti_nav_genpy/fast:
+	$(MAKE) -f lotti_nav/CMakeFiles/lotti_nav_genpy.dir/build.make lotti_nav/CMakeFiles/lotti_nav_genpy.dir/build
+.PHONY : lotti_nav_genpy/fast
+
+#=============================================================================
+# Target rules for targets named lotti_nav_gennodejs
+
+# Build rule for target.
+lotti_nav_gennodejs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 lotti_nav_gennodejs
+.PHONY : lotti_nav_gennodejs
+
+# fast build rule for target.
+lotti_nav_gennodejs/fast:
+	$(MAKE) -f lotti_nav/CMakeFiles/lotti_nav_gennodejs.dir/build.make lotti_nav/CMakeFiles/lotti_nav_gennodejs.dir/build
+.PHONY : lotti_nav_gennodejs/fast
+
+#=============================================================================
+# Target rules for targets named lotti_nav_generate_messages_nodejs
+
+# Build rule for target.
+lotti_nav_generate_messages_nodejs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 lotti_nav_generate_messages_nodejs
+.PHONY : lotti_nav_generate_messages_nodejs
+
+# fast build rule for target.
+lotti_nav_generate_messages_nodejs/fast:
+	$(MAKE) -f lotti_nav/CMakeFiles/lotti_nav_generate_messages_nodejs.dir/build.make lotti_nav/CMakeFiles/lotti_nav_generate_messages_nodejs.dir/build
+.PHONY : lotti_nav_generate_messages_nodejs/fast
+
+#=============================================================================
+# Target rules for targets named lotti_nav_genlisp
+
+# Build rule for target.
+lotti_nav_genlisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 lotti_nav_genlisp
+.PHONY : lotti_nav_genlisp
+
+# fast build rule for target.
+lotti_nav_genlisp/fast:
+	$(MAKE) -f lotti_nav/CMakeFiles/lotti_nav_genlisp.dir/build.make lotti_nav/CMakeFiles/lotti_nav_genlisp.dir/build
+.PHONY : lotti_nav_genlisp/fast
+
+#=============================================================================
+# Target rules for targets named lotti_nav_generate_messages_lisp
+
+# Build rule for target.
+lotti_nav_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 lotti_nav_generate_messages_lisp
+.PHONY : lotti_nav_generate_messages_lisp
+
+# fast build rule for target.
+lotti_nav_generate_messages_lisp/fast:
+	$(MAKE) -f lotti_nav/CMakeFiles/lotti_nav_generate_messages_lisp.dir/build.make lotti_nav/CMakeFiles/lotti_nav_generate_messages_lisp.dir/build
+.PHONY : lotti_nav_generate_messages_lisp/fast
+
+#=============================================================================
+# Target rules for targets named lotti_nav_geneus
+
+# Build rule for target.
+lotti_nav_geneus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 lotti_nav_geneus
+.PHONY : lotti_nav_geneus
+
+# fast build rule for target.
+lotti_nav_geneus/fast:
+	$(MAKE) -f lotti_nav/CMakeFiles/lotti_nav_geneus.dir/build.make lotti_nav/CMakeFiles/lotti_nav_geneus.dir/build
+.PHONY : lotti_nav_geneus/fast
+
+#=============================================================================
+# Target rules for targets named lotti_nav_generate_messages_eus
+
+# Build rule for target.
+lotti_nav_generate_messages_eus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 lotti_nav_generate_messages_eus
+.PHONY : lotti_nav_generate_messages_eus
+
+# fast build rule for target.
+lotti_nav_generate_messages_eus/fast:
+	$(MAKE) -f lotti_nav/CMakeFiles/lotti_nav_generate_messages_eus.dir/build.make lotti_nav/CMakeFiles/lotti_nav_generate_messages_eus.dir/build
+.PHONY : lotti_nav_generate_messages_eus/fast
+
+#=============================================================================
+# Target rules for targets named lotti_nav_gencpp
+
+# Build rule for target.
+lotti_nav_gencpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 lotti_nav_gencpp
+.PHONY : lotti_nav_gencpp
+
+# fast build rule for target.
+lotti_nav_gencpp/fast:
+	$(MAKE) -f lotti_nav/CMakeFiles/lotti_nav_gencpp.dir/build.make lotti_nav/CMakeFiles/lotti_nav_gencpp.dir/build
+.PHONY : lotti_nav_gencpp/fast
+
+#=============================================================================
+# Target rules for targets named lotti_nav_generate_messages_cpp
+
+# Build rule for target.
+lotti_nav_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 lotti_nav_generate_messages_cpp
+.PHONY : lotti_nav_generate_messages_cpp
+
+# fast build rule for target.
+lotti_nav_generate_messages_cpp/fast:
+	$(MAKE) -f lotti_nav/CMakeFiles/lotti_nav_generate_messages_cpp.dir/build.make lotti_nav/CMakeFiles/lotti_nav_generate_messages_cpp.dir/build
+.PHONY : lotti_nav_generate_messages_cpp/fast
+
+#=============================================================================
 # Target rules for targets named std_msgs_generate_messages_py
 
 # Build rule for target.
@@ -402,6 +519,19 @@ rosgraph_msgs_generate_messages_nodejs/fast:
 .PHONY : rosgraph_msgs_generate_messages_nodejs/fast
 
 #=============================================================================
+# Target rules for targets named _lotti_nav_generate_messages_check_deps_WhereIgo
+
+# Build rule for target.
+_lotti_nav_generate_messages_check_deps_WhereIgo: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _lotti_nav_generate_messages_check_deps_WhereIgo
+.PHONY : _lotti_nav_generate_messages_check_deps_WhereIgo
+
+# fast build rule for target.
+_lotti_nav_generate_messages_check_deps_WhereIgo/fast:
+	$(MAKE) -f lotti_nav/CMakeFiles/_lotti_nav_generate_messages_check_deps_WhereIgo.dir/build.make lotti_nav/CMakeFiles/_lotti_nav_generate_messages_check_deps_WhereIgo.dir/build
+.PHONY : _lotti_nav_generate_messages_check_deps_WhereIgo/fast
+
+#=============================================================================
 # Target rules for targets named rosgraph_msgs_generate_messages_py
 
 # Build rule for target.
@@ -439,6 +569,19 @@ actionlib_msgs_generate_messages_py: cmake_check_build_system
 actionlib_msgs_generate_messages_py/fast:
 	$(MAKE) -f lotti_nav/CMakeFiles/actionlib_msgs_generate_messages_py.dir/build.make lotti_nav/CMakeFiles/actionlib_msgs_generate_messages_py.dir/build
 .PHONY : actionlib_msgs_generate_messages_py/fast
+
+#=============================================================================
+# Target rules for targets named lotti_nav_generate_messages_py
+
+# Build rule for target.
+lotti_nav_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 lotti_nav_generate_messages_py
+.PHONY : lotti_nav_generate_messages_py
+
+# fast build rule for target.
+lotti_nav_generate_messages_py/fast:
+	$(MAKE) -f lotti_nav/CMakeFiles/lotti_nav_generate_messages_py.dir/build.make lotti_nav/CMakeFiles/lotti_nav_generate_messages_py.dir/build
+.PHONY : lotti_nav_generate_messages_py/fast
 
 #=============================================================================
 # Target rules for targets named actionlib_msgs_generate_messages_lisp
@@ -712,6 +855,19 @@ geometry_msgs_generate_messages_lisp: cmake_check_build_system
 geometry_msgs_generate_messages_lisp/fast:
 	$(MAKE) -f lotti_nav/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build.make lotti_nav/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/build
 .PHONY : geometry_msgs_generate_messages_lisp/fast
+
+#=============================================================================
+# Target rules for targets named lotti_nav_generate_messages
+
+# Build rule for target.
+lotti_nav_generate_messages: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 lotti_nav_generate_messages
+.PHONY : lotti_nav_generate_messages
+
+# fast build rule for target.
+lotti_nav_generate_messages/fast:
+	$(MAKE) -f lotti_nav/CMakeFiles/lotti_nav_generate_messages.dir/build.make lotti_nav/CMakeFiles/lotti_nav_generate_messages.dir/build
+.PHONY : lotti_nav_generate_messages/fast
 
 #=============================================================================
 # Target rules for targets named geometry_msgs_generate_messages_py
@@ -1398,6 +1554,15 @@ help:
 	@echo "... gmock"
 	@echo "... gtest_main"
 	@echo "... gtest"
+	@echo "... lotti_nav_genpy"
+	@echo "... lotti_nav_gennodejs"
+	@echo "... lotti_nav_generate_messages_nodejs"
+	@echo "... lotti_nav_genlisp"
+	@echo "... lotti_nav_generate_messages_lisp"
+	@echo "... lotti_nav_geneus"
+	@echo "... lotti_nav_generate_messages_eus"
+	@echo "... lotti_nav_gencpp"
+	@echo "... lotti_nav_generate_messages_cpp"
 	@echo "... std_msgs_generate_messages_py"
 	@echo "... std_msgs_generate_messages_lisp"
 	@echo "... sensor_msgs_generate_messages_cpp"
@@ -1407,9 +1572,11 @@ help:
 	@echo "... std_msgs_generate_messages_eus"
 	@echo "... actionlib_msgs_generate_messages_nodejs"
 	@echo "... rosgraph_msgs_generate_messages_nodejs"
+	@echo "... _lotti_nav_generate_messages_check_deps_WhereIgo"
 	@echo "... rosgraph_msgs_generate_messages_py"
 	@echo "... std_msgs_generate_messages_cpp"
 	@echo "... actionlib_msgs_generate_messages_py"
+	@echo "... lotti_nav_generate_messages_py"
 	@echo "... actionlib_msgs_generate_messages_lisp"
 	@echo "... actionlib_msgs_generate_messages_eus"
 	@echo "... actionlib_generate_messages_eus"
@@ -1431,6 +1598,7 @@ help:
 	@echo "... geometry_msgs_generate_messages_eus"
 	@echo "... geometry_msgs_generate_messages_cpp"
 	@echo "... geometry_msgs_generate_messages_lisp"
+	@echo "... lotti_nav_generate_messages"
 	@echo "... geometry_msgs_generate_messages_py"
 	@echo "... sensor_msgs_generate_messages_lisp"
 	@echo "... sensor_msgs_generate_messages_py"
