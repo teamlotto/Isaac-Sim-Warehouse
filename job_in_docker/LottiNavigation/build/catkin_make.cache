@@ -1,2 +1,0 @@
-carter_2dnav:carter_description:lotti_nav
--DCATKIN_DEVEL_PREFIX=/root/LottiNavigation/devel -DCMAKE_INSTALL_PREFIX=/root/LottiNavigation/install -G Unix Makefiles
