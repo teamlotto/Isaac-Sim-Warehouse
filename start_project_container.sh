@@ -11,5 +11,5 @@ sudo docker run --entrypoint ./runapp.sh --gpus all -e "ACCEPT_EULA=Y" --network
 	-e NVIDIA_VISIBLE_DEVICES=all\
 	-e NVIDIA_DRIVER_CAPABILITIES=all\
 	-e XAUTHORITY=/tmp/.docker.xauth \
-        -e DISPLAY=unix${DISPLAY} lottoworld777/project:0.4
+        -e DISPLAY=unix${DISPLAY} lottoworld777/project:0.5
 # job_in_docker is a sharing folder for sharing local files, fodlers, etc..
