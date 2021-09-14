@@ -1,0 +1,17 @@
+<launch>
+    <param name="use_sim_time" value="true" />
+
+    <!-- Run the map server -->
+    <node name="map_server" pkg="map_server" type="map_server" args="$(find lotti_nav)/map/carter_warehouse_navigation.yaml" />
+
+    <!--- Run AMCL -->
+    <include file="$(find amcl)/examples/amcl_diff.launch" />
+
+    <node pkg="move_base" type="move_base" respawn="false" name="move_base" output="screen">
+        <rosparam file="$(find lotti_nav)/params/costmap_common_params.yaml" command="load" ns="global_costmap" />
+        <rosparam file="$(find lotti_nav)/params/costmap_common_params.yaml" command="load" ns="local_costmap" />
+        <rosparam file="$(find lotti_nav)/params/local_costmap_params.yaml" command="load" />
+        <rosparam file="$(find lotti_nav)/params/global_costmap_params.yaml" command="load" />
+        <rosparam file="$(find lotti_nav)/params/base_local_planner_params.yaml" command="load" />
+    </node>
+</launch>

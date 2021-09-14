@@ -1181,8 +1181,8 @@ clean: lotti_nav/CMakeFiles/actionlib_msgs_generate_messages_py.dir/clean
 # Target rules for target lotti_nav/CMakeFiles/lotti_nav_generate_messages_py.dir
 
 # All Build rule for target.
-lotti_nav/CMakeFiles/lotti_nav_generate_messages_py.dir/all: lotti_nav/CMakeFiles/std_msgs_generate_messages_py.dir/all
 lotti_nav/CMakeFiles/lotti_nav_generate_messages_py.dir/all: lotti_nav/CMakeFiles/_lotti_nav_generate_messages_check_deps_WhereIgo.dir/all
+lotti_nav/CMakeFiles/lotti_nav_generate_messages_py.dir/all: lotti_nav/CMakeFiles/std_msgs_generate_messages_py.dir/all
 	$(MAKE) -f lotti_nav/CMakeFiles/lotti_nav_generate_messages_py.dir/build.make lotti_nav/CMakeFiles/lotti_nav_generate_messages_py.dir/depend
 	$(MAKE) -f lotti_nav/CMakeFiles/lotti_nav_generate_messages_py.dir/build.make lotti_nav/CMakeFiles/lotti_nav_generate_messages_py.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/LottiNavigation/build/CMakeFiles --progress-num=17,18 "Built target lotti_nav_generate_messages_py"
@@ -1886,11 +1886,11 @@ clean: lotti_nav/CMakeFiles/geometry_msgs_generate_messages_lisp.dir/clean
 # Target rules for target lotti_nav/CMakeFiles/lotti_nav_generate_messages.dir
 
 # All Build rule for target.
-lotti_nav/CMakeFiles/lotti_nav_generate_messages.dir/all: lotti_nav/CMakeFiles/lotti_nav_generate_messages_cpp.dir/all
 lotti_nav/CMakeFiles/lotti_nav_generate_messages.dir/all: lotti_nav/CMakeFiles/lotti_nav_generate_messages_py.dir/all
 lotti_nav/CMakeFiles/lotti_nav_generate_messages.dir/all: lotti_nav/CMakeFiles/lotti_nav_generate_messages_nodejs.dir/all
 lotti_nav/CMakeFiles/lotti_nav_generate_messages.dir/all: lotti_nav/CMakeFiles/lotti_nav_generate_messages_lisp.dir/all
 lotti_nav/CMakeFiles/lotti_nav_generate_messages.dir/all: lotti_nav/CMakeFiles/lotti_nav_generate_messages_eus.dir/all
+lotti_nav/CMakeFiles/lotti_nav_generate_messages.dir/all: lotti_nav/CMakeFiles/lotti_nav_generate_messages_cpp.dir/all
 	$(MAKE) -f lotti_nav/CMakeFiles/lotti_nav_generate_messages.dir/build.make lotti_nav/CMakeFiles/lotti_nav_generate_messages.dir/depend
 	$(MAKE) -f lotti_nav/CMakeFiles/lotti_nav_generate_messages.dir/build.make lotti_nav/CMakeFiles/lotti_nav_generate_messages.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/LottiNavigation/build/CMakeFiles --progress-num= "Built target lotti_nav_generate_messages"
