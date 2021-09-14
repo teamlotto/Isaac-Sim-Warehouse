@@ -72,7 +72,7 @@ if __name__ == "__main__":
 
     ## robot goods zone fail test
     # Set self.ros_msg_client.wait_for_reuslt(rospy.Duration(3)) in the move_* method
-    result = controller.move_goods_zone([(0.0, 0.0, 0.0), (0.0, 0.0, 0.0, 1.0)], 9)
-    rospy.loginfo("Test Success") if not result else rospy.loginfo("Test Fail")
+    # result = controller.move_goods_zone([(0.0, 0.0, 0.0), (0.0, 0.0, 0.0, 1.0)], 9)
+    # rospy.loginfo("Test Success") if not result else rospy.loginfo("Test Fail")
 
     rospy.spin()

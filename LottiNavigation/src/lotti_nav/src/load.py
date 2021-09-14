@@ -78,6 +78,6 @@ if __name__ == "__main__":
     # rospy.sleep(2)
 
     # # loader lift_up test
-    # ## Fail
-    # ret = loader.lift_up_down(target_pos=0.0, timeout=1.)
-    # rospy.loginfo("Lift down Test Success") if ret else rospy.loginfo("Lift down Test Fail")
+    ## Fail
+    #ret = loader.lift_up_down(target_pos=0.0, timeout=1.)
+    #rospy.loginfo("Lift down Test Success") if ret else rospy.loginfo("Lift down Test Fail")
