@@ -98,7 +98,7 @@ if __name__ == "__main__":
 
 
     #get_load_pose test area
-    result = zone_manage.get_load_pose("load_red")
+    result = zone_manage.get_load_pose("load_red") 
     if result == [(3.0478579998, -4.80341033936, 0), (0, 0, -0.704314478301, 0.709888100798)]:
         print("test in success")
     elif result == -1:
