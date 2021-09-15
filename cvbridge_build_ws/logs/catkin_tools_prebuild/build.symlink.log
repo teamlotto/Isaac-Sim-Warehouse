@@ -1,0 +1,12 @@
+Symlinking /root/cvbridge_build_ws/devel/./setup.zsh
+Symlinking /root/cvbridge_build_ws/devel/./local_setup.bash
+Symlinking /root/cvbridge_build_ws/devel/./local_setup.sh
+Symlinking /root/cvbridge_build_ws/devel/./cmake.lock
+Symlinking /root/cvbridge_build_ws/devel/./_setup_util.py
+Symlinking /root/cvbridge_build_ws/devel/./setup.bash
+Symlinking /root/cvbridge_build_ws/devel/./setup.sh
+Symlinking /root/cvbridge_build_ws/devel/./local_setup.zsh
+Symlinking /root/cvbridge_build_ws/devel/./env.sh
+Symlinking /root/cvbridge_build_ws/devel/lib/pkgconfig/catkin_tools_prebuild.pc
+Symlinking /root/cvbridge_build_ws/devel/share/catkin_tools_prebuild/cmake/catkin_tools_prebuildConfig-version.cmake
+Symlinking /root/cvbridge_build_ws/devel/share/catkin_tools_prebuild/cmake/catkin_tools_prebuildConfig.cmake

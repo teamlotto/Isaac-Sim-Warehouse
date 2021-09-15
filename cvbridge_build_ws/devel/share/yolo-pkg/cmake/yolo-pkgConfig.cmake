@@ -1,0 +1,1 @@
+/root/cvbridge_build_ws/devel/.private/yolo-pkg/share/yolo-pkg/cmake/yolo-pkgConfig.cmake

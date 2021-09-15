@@ -1,0 +1,2 @@
+/usr/local/lib/python3.6/dist-packages/setuptools/dist.py:153: UserWarning: newlines not allowed and will break in the future
+  warnings.warn("newlines not allowed and will break in the future")

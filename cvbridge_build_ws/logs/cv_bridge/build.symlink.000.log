@@ -1,0 +1,8 @@
+Symlinking /root/cvbridge_build_ws/devel/lib/libcv_bridge.so
+Symlinking /root/cvbridge_build_ws/devel/lib/python3/dist-packages/cv_bridge/__init__.py
+Symlinking /root/cvbridge_build_ws/devel/lib/python3/dist-packages/cv_bridge/boost/cv_bridge_boost.so
+Symlinking /root/cvbridge_build_ws/devel/lib/python3/dist-packages/cv_bridge/boost/__init__.py
+Symlinking /root/cvbridge_build_ws/devel/lib/pkgconfig/cv_bridge.pc
+Symlinking /root/cvbridge_build_ws/devel/share/cv_bridge/cmake/cv_bridge-extras.cmake
+Symlinking /root/cvbridge_build_ws/devel/share/cv_bridge/cmake/cv_bridgeConfig.cmake
+Symlinking /root/cvbridge_build_ws/devel/share/cv_bridge/cmake/cv_bridgeConfig-version.cmake

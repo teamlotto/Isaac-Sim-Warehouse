@@ -1,0 +1,3 @@
+Symlinking /root/cvbridge_build_ws/devel/lib/pkgconfig/yolo-pkg.pc
+Symlinking /root/cvbridge_build_ws/devel/share/yolo-pkg/cmake/yolo-pkgConfig-version.cmake
+Symlinking /root/cvbridge_build_ws/devel/share/yolo-pkg/cmake/yolo-pkgConfig.cmake

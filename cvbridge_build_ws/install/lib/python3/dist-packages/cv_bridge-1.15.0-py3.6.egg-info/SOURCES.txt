@@ -1,0 +1,3 @@
+setup.py
+python/cv_bridge/__init__.py
+python/cv_bridge/core.py

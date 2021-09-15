@@ -1,0 +1,21 @@
+[  0%] Built target geometry_msgs_generate_messages_py
+[  0%] Built target std_msgs_generate_messages_py
+[  0%] Built target std_msgs_generate_messages_nodejs
+[  0%] Built target sensor_msgs_generate_messages_lisp
+[  0%] Built target std_msgs_generate_messages_eus
+[  0%] Built target geometry_msgs_generate_messages_lisp
+[  0%] Built target geometry_msgs_generate_messages_nodejs
+[  0%] Built target sensor_msgs_generate_messages_cpp
+[  0%] Built target geometry_msgs_generate_messages_eus
+[  0%] Built target std_msgs_generate_messages_cpp
+[  0%] Built target sensor_msgs_generate_messages_py
+[  0%] Built target std_msgs_generate_messages_lisp
+[  0%] Built target sensor_msgs_generate_messages_eus
+[  0%] Built target geometry_msgs_generate_messages_cpp
+[  0%] Built target sensor_msgs_generate_messages_nodejs
+[ 50%] Built target cv_bridge
+make[2]: *** No rule to make target '/usr/lib/x86_64/libpython3.6m.so', needed by '/root/cvbridge_build_ws/devel/.private/cv_bridge/lib/python3/dist-packages/cv_bridge/boost/cv_bridge_boost.so'.  Stop.
+make[1]: *** [src/CMakeFiles/cv_bridge_boost.dir/all] Error 2
+CMakeFiles/Makefile2:930: recipe for target 'src/CMakeFiles/cv_bridge_boost.dir/all' failed
+Makefile:140: recipe for target 'all' failed
+make: *** [all] Error 2

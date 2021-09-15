@@ -1,0 +1,58 @@
+[  0%] Built target geometry_msgs_generate_messages_py
+[  0%] Built target std_msgs_generate_messages_py
+[  0%] Built target std_msgs_generate_messages_nodejs
+[  0%] Built target std_msgs_generate_messages_eus
+[  0%] Built target sensor_msgs_generate_messages_lisp
+[  0%] Built target geometry_msgs_generate_messages_nodejs
+[  0%] Built target std_msgs_generate_messages_cpp
+[  0%] Built target geometry_msgs_generate_messages_eus
+[  0%] Built target sensor_msgs_generate_messages_py
+[  0%] Built target geometry_msgs_generate_messages_lisp
+[  0%] Built target std_msgs_generate_messages_lisp
+[  0%] Built target sensor_msgs_generate_messages_cpp
+[  0%] Built target sensor_msgs_generate_messages_eus
+[  0%] Built target sensor_msgs_generate_messages_nodejs
+[  0%] Built target geometry_msgs_generate_messages_cpp
+[ 50%] Built target cv_bridge
+[100%] Built target cv_bridge_boost
+[36mInstall the project...[0m
+-- Install configuration: ""
+-- Installing: /root/cvbridge_build_ws/install/_setup_util.py
+-- Installing: /root/cvbridge_build_ws/install/env.sh
+-- Installing: /root/cvbridge_build_ws/install/setup.bash
+-- Installing: /root/cvbridge_build_ws/install/local_setup.bash
+-- Installing: /root/cvbridge_build_ws/install/setup.sh
+-- Installing: /root/cvbridge_build_ws/install/local_setup.sh
+-- Installing: /root/cvbridge_build_ws/install/setup.zsh
+-- Installing: /root/cvbridge_build_ws/install/local_setup.zsh
+-- Installing: /root/cvbridge_build_ws/install/.rosinstall
+-- Up-to-date: /root/cvbridge_build_ws/install/lib/pkgconfig/cv_bridge.pc
+-- Up-to-date: /root/cvbridge_build_ws/install/share/cv_bridge/cmake/cv_bridge-extras.cmake
+-- Up-to-date: /root/cvbridge_build_ws/install/share/cv_bridge/cmake/cv_bridgeConfig.cmake
+-- Up-to-date: /root/cvbridge_build_ws/install/share/cv_bridge/cmake/cv_bridgeConfig-version.cmake
+-- Up-to-date: /root/cvbridge_build_ws/install/share/cv_bridge/package.xml
++ cd /root/cvbridge_build_ws/src/vision_opencv/cv_bridge
++ mkdir -p /root/cvbridge_build_ws/install/lib/python3/dist-packages
++ /usr/bin/env PYTHONPATH=/root/cvbridge_build_ws/install/lib/python3/dist-packages:/root/cvbridge_build_ws/build/cv_bridge/lib/python3/dist-packages:/root/cvbridge_build_ws/install/lib/python3/dist-packages:/root/Project/LottiNavigation/devel/lib/python2.7/dist-packages:/opt/ros/melodic/lib/python2.7/dist-packages:/root/cvbridge_build_ws/devel/lib/python3/dist-packages CATKIN_BINARY_DIR=/root/cvbridge_build_ws/build/cv_bridge /usr/bin/python3 /root/cvbridge_build_ws/src/vision_opencv/cv_bridge/setup.py egg_info --egg-base /root/cvbridge_build_ws/build/cv_bridge build --build-base /root/cvbridge_build_ws/build/cv_bridge install --root=/ --install-layout=deb --prefix=/root/cvbridge_build_ws/install --install-scripts=/root/cvbridge_build_ws/install/bin
+running egg_info
+writing /root/cvbridge_build_ws/build/cv_bridge/cv_bridge.egg-info/PKG-INFO
+writing dependency_links to /root/cvbridge_build_ws/build/cv_bridge/cv_bridge.egg-info/dependency_links.txt
+writing top-level names to /root/cvbridge_build_ws/build/cv_bridge/cv_bridge.egg-info/top_level.txt
+reading manifest file '/root/cvbridge_build_ws/build/cv_bridge/cv_bridge.egg-info/SOURCES.txt'
+writing manifest file '/root/cvbridge_build_ws/build/cv_bridge/cv_bridge.egg-info/SOURCES.txt'
+running build
+running build_py
+running install
+running install_lib
+running install_egg_info
+removing '/root/cvbridge_build_ws/install/lib/python3/dist-packages/cv_bridge-1.15.0-py3.6.egg-info' (and everything under it)
+Copying /root/cvbridge_build_ws/build/cv_bridge/cv_bridge.egg-info to /root/cvbridge_build_ws/install/lib/python3/dist-packages/cv_bridge-1.15.0-py3.6.egg-info
+running install_scripts
+/usr/local/lib/python3.6/dist-packages/setuptools/dist.py:153: UserWarning: newlines not allowed and will break in the future
+  warnings.warn("newlines not allowed and will break in the future")
+-- Up-to-date: /root/cvbridge_build_ws/install/include/cv_bridge
+-- Up-to-date: /root/cvbridge_build_ws/install/include/cv_bridge/rgb_colors.h
+-- Up-to-date: /root/cvbridge_build_ws/install/include/cv_bridge/cv_bridge.h
+-- Up-to-date: /root/cvbridge_build_ws/install/lib/python3/dist-packages/cv_bridge/boost/__init__.py
+-- Up-to-date: /root/cvbridge_build_ws/install/lib/libcv_bridge.so
+-- Up-to-date: /root/cvbridge_build_ws/install/lib/python3/dist-packages/cv_bridge/boost/cv_bridge_boost.so

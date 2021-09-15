@@ -1,0 +1,5 @@
+yolo-pkg
+/root/cvbridge_build_ws/devel/.private/yolo-pkg/cmake.lock /root/cvbridge_build_ws/devel/./cmake.lock
+/root/cvbridge_build_ws/devel/.private/yolo-pkg/lib/pkgconfig/yolo-pkg.pc /root/cvbridge_build_ws/devel/lib/pkgconfig/yolo-pkg.pc
+/root/cvbridge_build_ws/devel/.private/yolo-pkg/share/yolo-pkg/cmake/yolo-pkgConfig-version.cmake /root/cvbridge_build_ws/devel/share/yolo-pkg/cmake/yolo-pkgConfig-version.cmake
+/root/cvbridge_build_ws/devel/.private/yolo-pkg/share/yolo-pkg/cmake/yolo-pkgConfig.cmake /root/cvbridge_build_ws/devel/share/yolo-pkg/cmake/yolo-pkgConfig.cmake

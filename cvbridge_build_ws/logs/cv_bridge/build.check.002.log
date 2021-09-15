@@ -1,0 +1,4 @@
+CMake Error: The source directory "/root/cvbridge_build_ws/src/vision_opencv/cv_bridge" does not exist.
+Specify --help for usage, or press the help button on the CMake GUI.
+Makefile:782: recipe for target 'cmake_check_build_system' failed
+make: *** [cmake_check_build_system] Error 1

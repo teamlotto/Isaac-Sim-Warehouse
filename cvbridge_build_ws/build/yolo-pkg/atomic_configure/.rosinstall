@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /root/cvbridge_build_ws/devel/.private/yolo-pkg/setup.sh

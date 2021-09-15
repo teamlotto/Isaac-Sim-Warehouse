@@ -1,0 +1,15 @@
+[36mInstall the project...[0m
+-- Install configuration: ""
+-- Installing: /root/cvbridge_build_ws/install/_setup_util.py
+-- Installing: /root/cvbridge_build_ws/install/env.sh
+-- Installing: /root/cvbridge_build_ws/install/setup.bash
+-- Installing: /root/cvbridge_build_ws/install/local_setup.bash
+-- Installing: /root/cvbridge_build_ws/install/setup.sh
+-- Installing: /root/cvbridge_build_ws/install/local_setup.sh
+-- Installing: /root/cvbridge_build_ws/install/setup.zsh
+-- Installing: /root/cvbridge_build_ws/install/local_setup.zsh
+-- Installing: /root/cvbridge_build_ws/install/.rosinstall
+-- Installing: /root/cvbridge_build_ws/install/lib/pkgconfig/yolo-pkg.pc
+-- Installing: /root/cvbridge_build_ws/install/share/yolo-pkg/cmake/yolo-pkgConfig.cmake
+-- Installing: /root/cvbridge_build_ws/install/share/yolo-pkg/cmake/yolo-pkgConfig-version.cmake
+-- Installing: /root/cvbridge_build_ws/install/share/yolo-pkg/package.xml

@@ -1,0 +1,8 @@
+prefix=/root/cvbridge_build_ws/devel/.private/yolo-pkg
+
+Name: yolo-pkg
+Description: Description of yolo-pkg
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

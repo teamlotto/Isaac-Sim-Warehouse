@@ -1,0 +1,10 @@
+vision_opencv/cv_bridge
+/root/cvbridge_build_ws/devel/.private/cv_bridge/cmake.lock /root/cvbridge_build_ws/devel/./cmake.lock
+/root/cvbridge_build_ws/devel/.private/cv_bridge/lib/libcv_bridge.so /root/cvbridge_build_ws/devel/lib/libcv_bridge.so
+/root/cvbridge_build_ws/devel/.private/cv_bridge/lib/python3/dist-packages/cv_bridge/__init__.py /root/cvbridge_build_ws/devel/lib/python3/dist-packages/cv_bridge/__init__.py
+/root/cvbridge_build_ws/devel/.private/cv_bridge/lib/python3/dist-packages/cv_bridge/boost/cv_bridge_boost.so /root/cvbridge_build_ws/devel/lib/python3/dist-packages/cv_bridge/boost/cv_bridge_boost.so
+/root/cvbridge_build_ws/devel/.private/cv_bridge/lib/python3/dist-packages/cv_bridge/boost/__init__.py /root/cvbridge_build_ws/devel/lib/python3/dist-packages/cv_bridge/boost/__init__.py
+/root/cvbridge_build_ws/devel/.private/cv_bridge/lib/pkgconfig/cv_bridge.pc /root/cvbridge_build_ws/devel/lib/pkgconfig/cv_bridge.pc
+/root/cvbridge_build_ws/devel/.private/cv_bridge/share/cv_bridge/cmake/cv_bridge-extras.cmake /root/cvbridge_build_ws/devel/share/cv_bridge/cmake/cv_bridge-extras.cmake
+/root/cvbridge_build_ws/devel/.private/cv_bridge/share/cv_bridge/cmake/cv_bridgeConfig.cmake /root/cvbridge_build_ws/devel/share/cv_bridge/cmake/cv_bridgeConfig.cmake
+/root/cvbridge_build_ws/devel/.private/cv_bridge/share/cv_bridge/cmake/cv_bridgeConfig-version.cmake /root/cvbridge_build_ws/devel/share/cv_bridge/cmake/cv_bridgeConfig-version.cmake
