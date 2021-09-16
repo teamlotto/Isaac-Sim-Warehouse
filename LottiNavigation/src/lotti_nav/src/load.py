@@ -2,7 +2,6 @@
 
 from rospy.core import loginfo
 from sensor_msgs.msg import JointState
-from pid import PID
 import rospy
 import numpy as np
 
