@@ -4,6 +4,7 @@ from rospy.core import rospyinfo
 from state import StateManager
 from move_control import MoveController
 from way_points_manager import WayPointsManager
+from load import Loader
 from std_msgs.msg import String
 from lotti_nav.srv import WhereIgo
 import rospy
@@ -12,6 +13,7 @@ class Lotti:
     def __init__(self):
         self.zone_manager = WayPointsManager()
         self.move_controller = MoveController()
+        self.loader = Loader()
         self.state = StateManager.Wait
         self.destination = None
         self.first_operate = True
@@ -63,14 +65,16 @@ class Lotti:
         rospy.loginfo("Changing State Recognition to Load")
 
     def operate_load_case(self):
-        rospy.info("Load State")
+        rospy.loginfo("Load State")
+        self.loader.lift_up_down(target_pos=4.0, timeout=10.)
         pose = self.zone_manager.get_load_pose('load_red')
+        rospy.loginfo(f"pose {pose}")
         ret = self.move_controller.move_load_zone(pose)
         if ret:
+            self.loader.lift_up_down(target_pos=0.0, timeout=10.)
+            # self.state = StateManager.Wait
             pose = self.zone_manager.get_wait_pose('wait_zone1')
             ret = self.move_controller.move_wait_zone(pose)
-            if ret:
-                self.state = StateManager.Wait
 
     def operate(self):
         while True:
@@ -87,15 +91,8 @@ class Lotti:
                 self.operate_recognition_case()
 
             # # Load State
-            # elif self.state == StateManager.Load:
-                # rospy.info("Load State")
-                # pose = self.zone_manager.get_load_pose('load_red')
-                # ret = self.move_controller.move_load_zone(pose)
-                # if ret:
-                #     pose = self.zone_manager.get_wait_pose('wait_zone1')
-                #     ret = self.move_controller.move_wait_zone(pose)
-                #     if ret:
-                #         self.state = StateManager.Wait
+            elif self.state == StateManager.Load:
+                self.operate_load_case()
         
 
 if __name__ == "__main__":

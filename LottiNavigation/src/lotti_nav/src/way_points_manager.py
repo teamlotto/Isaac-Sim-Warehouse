@@ -1,5 +1,4 @@
 class WayPointsManager:
-
     def __init__(self):
         self.goods_zone_pose = {
             "goods_zone2" : [(0.549774169922, -7.30722618103, 0), (0, 0, -0.707685951917, 0.706527135685)],
@@ -36,7 +35,7 @@ class WayPointsManager:
 
     def get_load_pose(self, name: str) -> list:
         try:
-            pose = self.wait_zone_pose[name]
+            pose = self.load_zone_pose[name]
         except UnboundLocalError:
             return -1
         except KeyError:
@@ -98,7 +97,7 @@ if __name__ == "__main__":
 
 
     #get_load_pose test area
-    result = zone_manage.get_load_pose("load_red") 
+    result = zone_manage.get_load_pose("load_red")
     if result == [(3.0478579998, -4.80341033936, 0), (0, 0, -0.704314478301, 0.709888100798)]:
         print("test in success")
     elif result == -1:

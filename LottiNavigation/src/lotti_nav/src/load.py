@@ -21,7 +21,7 @@ class Loader:
         param: target_pos : float, lifting target position value
         """
         def get_lift_pos():
-            joint_state_msg = rospy.wait_for_message("/joint_states", JointState, timeout=1)
+            joint_state_msg = rospy.wait_for_message("/joint_states", JointState, timeout=10)
             joint_idx = joint_state_msg.name.index(self.joint_name)
             joint_pos = joint_state_msg.position[joint_idx]
 
@@ -58,8 +58,8 @@ if __name__ == "__main__":
 
     # loader lift_up test
     ## Success
-    # ret = loader.lift_up_down(target_pos=4.0, timeout=10.)
-    # rospy.loginfo("Lift up Test Success") if ret else rospy.loginfo("Lift up Test Fail")
+    ret = loader.lift_up_down(target_pos=4.0, timeout=10.)
+    rospy.loginfo("Lift up Test Success") if ret else rospy.loginfo("Lift up Test Fail")
 
     # rospy.sleep(2)
 
