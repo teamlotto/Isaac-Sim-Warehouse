@@ -1,7 +1,11 @@
 #!/usr/bin/env python3
 
+from numpy.core.numeric import roll
+from yaml import load
 from rospy.core import loginfo
-from sensor_msgs.msg import JointState
+from sensor_msgs.msg import JointState, LaserScan, Image
+from way_points_manager import WayPointsManager
+from move_control import MoveController
 import rospy
 import numpy as np
 
@@ -11,8 +15,7 @@ class Loader:
         self.joint_name = joint_name
         self.joint_command = JointState()
         self.joint_command.name = [self.joint_name]
-        rospy.loginfo(f"Loader was Received joint name : {self.joint_command.name}")
-        self.lift_success, self.first = False, True
+        self.roll, self.pitch, self.yaw = 0., 0., 0.
 
     def lift_up_down(self, target_pos: float = 0.0, timeout: float = 3.) -> bool:
         """
@@ -43,6 +46,24 @@ class Loader:
         
         return True
 
+    def search_rolltainer(self):
+        pass
+    
+    def set_middle_rolltainer(self):
+        from nav_msgs.msg import Odometry
+        from geometry_msgs.msg import Twist
+        from tf.transformations import euler_from_quaternion, quaternion_from_euler
+        def get_rotation(msg):
+            orientations = msg.pose.pose.orientation
+            orientation_list = [orientations.x, orientations.y, orientations.z, orientations.w]
+            roll, pitch, yaw = euler_from_quaternion(orientation_list)
+            rospy.loginfo(f"Got yaw : {yaw}")
+        sub = rospy.Subscriber("/odom", Odometry, get_rotation)
+
+
+    def process_image(self):
+        pass
+            
     def enter_rolltainer(self):
         pass
 
@@ -57,8 +78,8 @@ if __name__ == "__main__":
 
     # loader lift_up test
     ## Success
-    ret = loader.lift_up_down(target_pos=4.0, timeout=10.)
-    rospy.loginfo("Lift up Test Success") if ret else rospy.loginfo("Lift up Test Fail")
+    # ret = loader.lift_up_down(target_pos=4.0, timeout=10.)
+    # rospy.loginfo("Lift up Test Success") if ret else rospy.loginfo("Lift up Test Fail")
 
     # rospy.sleep(2)
 
@@ -80,3 +101,11 @@ if __name__ == "__main__":
     ## Fail
     #ret = loader.lift_up_down(target_pos=0.0, timeout=1.)
     #rospy.loginfo("Lift down Test Success") if ret else rospy.loginfo("Lift down Test Fail")
+
+    # zone_manager = WayPointsManager()
+    # move_controller = MoveController()
+
+    # pose = zone_manager.get_goods_pose("goods_zone3")
+    # ret = move_controller.move_goods_zone(pose)
+    loader.set_middle_rolltainer()
+    rospy.spin()

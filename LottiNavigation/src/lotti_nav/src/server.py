@@ -19,7 +19,6 @@ def main():
 
 if __name__ == "__main__":
     rospy.init_node("LottoWorld_server")
-
     main()
-
-    rospy.spin()    
+    rospy.spin()
+    

@@ -63,11 +63,17 @@ class MoveController:
 
 if __name__ == "__main__":
     rospy.init_node("test_move_control")
-
     controller = MoveController()
-
     ## robot goods zone success test
-    # result = controller.move_goods_zone([(2.1, 2.2, 0.0), (0.0, 0.0, 0.0, 1.0)], 59)
+    # result = controller.move_goods_zone([(0.386627912521, 6.69019269943, 0), (0, 0, 0.712826634448, 0.70134028062)], 59)
+    # rospy.loginfo("Test Success") if result else rospy.loginfo("Test Fail")
+
+    # rotate left
+    result = controller.move_goods_zone([(0.386627912521, 6.69019269943, 0), (0, 0, 0, 1.0)], 59)
+    rospy.loginfo("Test Success") if result else rospy.loginfo("Test Fail")
+
+    # rotate straight
+    # result = controller.move_goods_zone([(0.386627912521, 6.69019269943, 0), (0, 0, 0.7, 0.7)], 59)
     # rospy.loginfo("Test Success") if result else rospy.loginfo("Test Fail")
 
     ## robot goods zone fail test

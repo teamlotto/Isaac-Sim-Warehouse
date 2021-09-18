@@ -72,9 +72,7 @@ class Lotti:
         ret = self.move_controller.move_load_zone(pose)
         if ret:
             self.loader.lift_up_down(target_pos=0.0, timeout=10.)
-            # self.state = StateManager.Wait
-            pose = self.zone_manager.get_wait_pose('wait_zone1')
-            ret = self.move_controller.move_wait_zone(pose)
+            self.state = StateManager.Wait
 
     def operate(self):
         while True:

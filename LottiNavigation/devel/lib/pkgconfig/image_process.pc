@@ -1,0 +1,8 @@
+prefix=/home/cj/isaac-sim-prj/git_clone/Isaac-Sim-Warehouse/LottiNavigation/devel
+
+Name: image_process
+Description: Description of image_process
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
