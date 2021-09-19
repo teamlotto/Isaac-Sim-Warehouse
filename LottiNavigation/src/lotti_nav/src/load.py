@@ -6,6 +6,7 @@ from rospy.core import loginfo
 from sensor_msgs.msg import JointState, LaserScan, Image
 from way_points_manager import WayPointsManager
 from move_control import MoveController
+from geometry_msgs.msg import Twist
 import rospy
 import numpy as np
 
@@ -46,20 +47,95 @@ class Loader:
         
         return True
 
-    def search_rolltainer(self):
-        pass
-    
-    def set_middle_rolltainer(self):
-        from nav_msgs.msg import Odometry
-        from geometry_msgs.msg import Twist
-        from tf.transformations import euler_from_quaternion, quaternion_from_euler
-        def get_rotation(msg):
-            orientations = msg.pose.pose.orientation
-            orientation_list = [orientations.x, orientations.y, orientations.z, orientations.w]
-            roll, pitch, yaw = euler_from_quaternion(orientation_list)
-            rospy.loginfo(f"Got yaw : {yaw}")
-        sub = rospy.Subscriber("/odom", Odometry, get_rotation)
+    def rotate(self, angluar_speed, target_angle, extra_val = 65, clock_wise=True, degree=False):
+        import math
+        PI = math.pi
+        pub = rospy.Publisher("/cmd_vel", Twist, queue_size=1)
+        vel_msg = Twist()
 
+        rad_speed = angluar_speed * PI / 180 if degree else angluar_speed
+        rad_angle = target_angle * PI / 180 if degree else target_angle
+        rad_angle += extra_val * PI / 180
+        rospy.loginfo(f"Plus extra_val : {extra_val} rad/s")
+
+        vel_msg.linear.x = 0
+        vel_msg.linear.y = 0
+        vel_msg.linear.z = 0
+        vel_msg.angular.x = 0
+        vel_msg.angular.y = 0
+
+        if clock_wise :
+            vel_msg.angular.z = -abs(rad_speed)
+        else:
+            vel_msg.angular.z = abs(rad_speed)
+
+        import time
+        current_angle = 0
+        prev_time = time.time()
+        rate = rospy.Rate(10)
+        while(current_angle < rad_angle):
+            rospy.loginfo(f"Rotating ... current_angle {current_angle} -> target_angle {rad_angle}")
+            pub.publish(vel_msg)
+            current_angle = rad_speed * (time.time() - prev_time)
+            rate.sleep()
+        
+        vel_msg.angular.z = 0
+        pub.publish(vel_msg)
+        rospy.loginfo(f"Rotating Success")
+
+    def go_with_vel(self, angular_vel=[0., 0., 0.], linear_vel=[0., 0., 0.]):
+        rospy.loginfo(f"Go with angular_vel :{angular_vel}")
+        rospy.loginfo(f"Go with linear_vel :{linear_vel}")
+        pub = rospy.Publisher("/cmd_vel", Twist, queue_size=1)
+        vel_msg = Twist()
+        vel_msg.angular.x = angular_vel[0]
+        vel_msg.angular.y = angular_vel[1]
+        vel_msg.angular.z = angular_vel[2]
+        vel_msg.linear.x = linear_vel[0]
+        vel_msg.linear.y = linear_vel[1]
+        vel_msg.linear.z = linear_vel[2]
+        rospy.loginfo(f"vel_msg : \n{vel_msg}")
+
+        import time
+        start = time.time()
+        while (time.time() - start) < 0.5:
+            pub.publish(vel_msg)
+
+        rospy.loginfo(f"Sucess vel msg pub")
+
+    def get_bbox_info(self) -> dict:
+        from darknet_ros_msgs.msg import BoundingBoxes
+        from collections import defaultdict
+        
+        msg = rospy.wait_for_message("/darknet_ros/bounding_boxes", BoundingBoxes, timeout=2)
+        bbox_dict = defaultdict(list)
+        [ bbox_dict[info.Class].append((round(info.probability, 3), info.xmin, info.ymin, info.xmax, info.ymax)) for info in msg.bounding_boxes ]
+        
+        return bbox_dict
+
+    def get_bbox_center(self, class_name: str) -> dict:
+        bbox_dict = self.get_bbox_info()
+        center_dict = {}
+        for idx, infos in enumerate(bbox_dict[class_name]):
+            _, xmin, ymin, xmax, ymax = infos
+            center_dict[idx] = ((xmax - xmin) // 2, (ymax - ymin) // 2)
+        
+        return center_dict
+
+    def get_matched_rolltianer_center(self, product_name: str):
+        """
+        해당 제품의 롤테이너 입구의 센터를 알려주는 함수
+        왼쪽 순서대로 rolltainer의 bbox 중앙좌표와 제품의 bbox 중앙좌표의 차이가 가장 작은 것과 매칭 시켜준다.
+        매칭의 결과는 중앙 좌표의 매칭이다.
+        """
+        rolltainer_center_dict = self.get_bbox_center("rolltainer")
+        product_center_dict = self.get_bbox_center(product_name)
+        prd_x_center, _ = product_center_dict[0]
+        diff_list = list(map(lambda x: abs(prd_x_center - x), rolltainer_center_dict.values()))
+        matched_rolltainer_center = rolltainer_center_dict[diff_list.index(min(diff_list))]
+
+        return matched_rolltainer_center
+        
 
     def process_image(self):
         pass
@@ -107,5 +183,10 @@ if __name__ == "__main__":
 
     # pose = zone_manager.get_goods_pose("goods_zone3")
     # ret = move_controller.move_goods_zone(pose)
-    loader.set_middle_rolltainer()
+    import math
+    target = 90 * 2 * math.pi / 360
+    # loader.rotate(angluar_speed=0.2, target_angle=target, clock_wise=False, degree=False)
+    # loader.go_with_vel(linear_vel=[1., 0., 0.])
+    loader.get_rolltainer_center()
+
     rospy.spin()

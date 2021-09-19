@@ -3,6 +3,7 @@ import rospy
 import actionlib
 from actionlib import *
 from move_base_msgs.msg import MoveBaseAction, MoveBaseGoal
+from geometry_msgs.msg import Twist
 
 class MoveController:
     def __init__(self):
@@ -60,6 +61,21 @@ class MoveController:
         else:
             rospy.loginfo("LOTTI is not arrived in WaitZone")
             return False
+
+    def go_straight(joint_names: list, vel):
+        pub = rospy.Publisher("/cmd_vel", Twist, queue_size=1)
+        vel_msg = Twist()
+        vel_msg.angular.x = 0
+        vel_msg.angular.y = 0
+        vel_msg.angular.z = 0
+        vel_msg.linear.y = 0
+        vel_msg.linear.z = 0
+        vel_msg.linear.x = vel
+
+        pub.publish(vel_msg)
+
+        
+
 
 if __name__ == "__main__":
     rospy.init_node("test_move_control")
