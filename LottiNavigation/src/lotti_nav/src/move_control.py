@@ -85,8 +85,8 @@ if __name__ == "__main__":
     # rospy.loginfo("Test Success") if result else rospy.loginfo("Test Fail")
 
     # rotate left
-    result = controller.move_goods_zone([(0.386627912521, 6.69019269943, 0), (0, 0, 0, 1.0)], 59)
-    rospy.loginfo("Test Success") if result else rospy.loginfo("Test Fail")
+    # result = controller.move_goods_zone([(0.386627912521, 6.69019269943, 0), (0, 0, 0, 1.0)], 59)
+    # rospy.loginfo("Test Success") if result else rospy.loginfo("Test Fail")
 
     # rotate straight
     # result = controller.move_goods_zone([(0.386627912521, 6.69019269943, 0), (0, 0, 0.7, 0.7)], 59)
@@ -97,4 +97,11 @@ if __name__ == "__main__":
     # result = controller.move_goods_zone([(0.0, 0.0, 0.0), (0.0, 0.0, 0.0, 1.0)], 9)
     # rospy.loginfo("Test Success") if not result else rospy.loginfo("Test Fail")
 
+    # up
+    # result = controller.move_goods_zone([(0.386627912521, 6.69019269943, 0), (0, 0, 0, 1.0)], 59)
+    # rospy.loginfo("Test Success") if result else rospy.loginfo("Test Fail")
+
+    # down
+    result = controller.move_goods_zone([(0.386627912521, 6.69019269943, 0), (0, 0, 1., 0)], 59)
+    rospy.loginfo("Test Success") if result else rospy.loginfo("Test Fail")
     rospy.spin()

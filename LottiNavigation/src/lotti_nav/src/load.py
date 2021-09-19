@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 
+from ast import literal_eval
+from logging import RootLogger, error
 from numpy.core.numeric import roll
 from yaml import load
-from rospy.core import loginfo
+from rospy.core import loginfo, rospyinfo
 from sensor_msgs.msg import JointState, LaserScan, Image
 from way_points_manager import WayPointsManager
 from move_control import MoveController
@@ -47,41 +49,46 @@ class Loader:
         
         return True
 
-    def rotate(self, angluar_speed, target_angle, extra_val = 65, clock_wise=True, degree=False):
+    def rotate(self, angluar_speed, target_angle, extra_val = 56, clock_wise=True, degree=False):
         import math
         PI = math.pi
         pub = rospy.Publisher("/cmd_vel", Twist, queue_size=1)
         vel_msg = Twist()
+        try:
+            rad_speed = angluar_speed * PI / 180 if degree else angluar_speed
+            rad_angle = target_angle * PI / 180 if degree else target_angle
+            rad_angle += extra_val * PI / 180
+            rospy.loginfo(f"Plus extra_val : {extra_val} rad/s")
 
-        rad_speed = angluar_speed * PI / 180 if degree else angluar_speed
-        rad_angle = target_angle * PI / 180 if degree else target_angle
-        rad_angle += extra_val * PI / 180
-        rospy.loginfo(f"Plus extra_val : {extra_val} rad/s")
+            vel_msg.linear.x = 0
+            vel_msg.linear.y = 0
+            vel_msg.linear.z = 0
+            vel_msg.angular.x = 0
+            vel_msg.angular.y = 0
 
-        vel_msg.linear.x = 0
-        vel_msg.linear.y = 0
-        vel_msg.linear.z = 0
-        vel_msg.angular.x = 0
-        vel_msg.angular.y = 0
+            if clock_wise :
+                vel_msg.angular.z = -abs(rad_speed)
+            else:
+                vel_msg.angular.z = abs(rad_speed)
 
-        if clock_wise :
-            vel_msg.angular.z = -abs(rad_speed)
-        else:
-            vel_msg.angular.z = abs(rad_speed)
-
-        import time
-        current_angle = 0
-        prev_time = time.time()
-        rate = rospy.Rate(10)
-        while(current_angle < rad_angle):
-            rospy.loginfo(f"Rotating ... current_angle {current_angle} -> target_angle {rad_angle}")
+            import time
+            current_angle = 0
+            prev_time = time.time()
+            rate = rospy.Rate(10)
+            while(current_angle < rad_angle):
+                rospy.loginfo(f"Rotating ... current_angle {current_angle} -> target_angle {rad_angle}")
+                pub.publish(vel_msg)
+                current_angle = rad_speed * (time.time() - prev_time)
+                rate.sleep()
+            
+            vel_msg.angular.z = 0
             pub.publish(vel_msg)
-            current_angle = rad_speed * (time.time() - prev_time)
-            rate.sleep()
-        
-        vel_msg.angular.z = 0
-        pub.publish(vel_msg)
-        rospy.loginfo(f"Rotating Success")
+            rospy.loginfo(f"Rotating Success")
+        except Exception as e:
+            rospy.loginfo(f"Error : {e}")
+            return False
+
+        return True
 
     def go_with_vel(self, angular_vel=[0., 0., 0.], linear_vel=[0., 0., 0.]):
         rospy.loginfo(f"Go with angular_vel :{angular_vel}")
@@ -98,7 +105,7 @@ class Loader:
 
         import time
         start = time.time()
-        while (time.time() - start) < 0.5:
+        while (time.time() - start) < 0.4:
             pub.publish(vel_msg)
 
         rospy.loginfo(f"Sucess vel msg pub")
@@ -118,11 +125,11 @@ class Loader:
         center_dict = {}
         for idx, infos in enumerate(bbox_dict[class_name]):
             _, xmin, ymin, xmax, ymax = infos
-            center_dict[idx] = ((xmax - xmin) // 2, (ymax - ymin) // 2)
+            center_dict[idx] = (xmin + (xmax - xmin) // 2, ymin + (ymax - ymin) // 2)
         
         return center_dict
 
-    def get_matched_rolltianer_center(self, product_name: str):
+    def get_matched_rolltianer_center(self, product_name: str) -> tuple:
         """
         해당 제품의 롤테이너 입구의 센터를 알려주는 함수
         왼쪽 순서대로 rolltainer의 bbox 중앙좌표와 제품의 bbox 중앙좌표의 차이가 가장 작은 것과 매칭 시켜준다.
@@ -130,18 +137,51 @@ class Loader:
         """
         rolltainer_center_dict = self.get_bbox_center("rolltainer")
         product_center_dict = self.get_bbox_center(product_name)
+        rospy.loginfo(f"product {product_name} , {product_center_dict}")
         prd_x_center, _ = product_center_dict[0]
-        diff_list = list(map(lambda x: abs(prd_x_center - x), rolltainer_center_dict.values()))
+        diff_list = list(map(lambda x: (abs(prd_x_center - x[0]), x[1]), rolltainer_center_dict.values()))
         matched_rolltainer_center = rolltainer_center_dict[diff_list.index(min(diff_list))]
 
         return matched_rolltainer_center
         
+    def match_image_center(self, center, img_hw: tuple = (1280, 750), error_bound = 3):
+        w, _ = img_hw
+        rospy.loginfo(f"Matching center ... {w // 2 - error_bound} {center[0]} {w // 2 + error_bound}")
+        if w // 2 - error_bound < center[0] < w // 2 + error_bound:
+            return True
+        else:
+            return False
 
-    def process_image(self):
-        pass
-            
     def enter_rolltainer(self):
-        pass
+        import math
+        # target_product_name = "blue"
+        target_product_name = "red"
+        # direction = "right"
+        direction = "left"
+        center = (-1, -1)
+        clock_dir = True if direction == "right" else False
+        target_radian = 90 * 2 * math.pi / 360
+        # rotate_ret = self.rotate(0.2, target_radian, degree=False, clock_wise=clock_dir)
+        rotate_ret = True
+        self.go_with_vel(linear_vel=[0.5, 0., 0.]) if rotate_ret else self.go_with_vel(linear_vel=[0., 0., 0.])
+
+        while not self.match_image_center(center):
+            center = self.get_matched_rolltianer_center(target_product_name)
+        
+        self.go_with_vel(linear_vel=[0., 0., 0.])
+        clock_dir ^= True
+        self.rotate(0.2, target_radian, degree=False, clock_wise=clock_dir)
+        self.go_with_vel(linear_vel=[0.5, 0., 0.])
+
+    def read_lidar(self):
+        msg = rospy.wait_for_message("/scan", LaserScan, timeout=2)
+        rospy.loginfo(f"{msg.ranges}")
+        rospy.loginfo(f"range len : {len(msg.ranges)}")
+        rospy.loginfo(f"max range val :{max(msg.ranges)}")
+        range_list = list(msg.ranges)
+        rospy.loginfo(f"max index : {range_list.index(max(msg.ranges))}")
+
+        
 
     def escape_rolltainer(self):
         pass
@@ -184,9 +224,38 @@ if __name__ == "__main__":
     # pose = zone_manager.get_goods_pose("goods_zone3")
     # ret = move_controller.move_goods_zone(pose)
     import math
-    target = 90 * 2 * math.pi / 360
-    # loader.rotate(angluar_speed=0.2, target_angle=target, clock_wise=False, degree=False)
+    # target = 90 * 2 * math.pi / 360
+    # loader.rotate(angluar_speed=0.2, target_angle=target, clock_wise=True, degree=False)
     # loader.go_with_vel(linear_vel=[1., 0., 0.])
-    loader.get_rolltainer_center()
+    
+    # bbox info test
+    # result = loader.get_bbox_info()
+    # rospy.loginfo(result["red"])
+
+    # center getting test
+    # result = loader.get_bbox_center("red")
+    # rospy.loginfo(result)
+
+    # matched rolltainer center test
+    # result = loader.get_matched_rolltianer_center("red")
+    # rospy.loginfo(f"Get matched rolltainer center : {result}") 
+    # result = loader.get_matched_rolltianer_center("green")
+    # rospy.loginfo(f"Get matched rolltainer center : {result}") 
+    # result = loader.get_matched_rolltianer_center("blue")
+    # rospy.loginfo(f"Get matched rolltainer center : {result}") 
+
+    # match from center to image center
+    # while True:
+    #     blue_center = loader.get_matched_rolltianer_center("blue")
+    #     rospy.loginfo(blue_center)
+    #     if loader.match_image_center(blue_center):
+    #         rospy.loginfo("matched")
+    #     else:
+    #         rospy.loginfo("not matched")
+    
+    # entering test
+    # loader.enter_rolltainer()
+    while True:
+        loader.read_lidar()
 
     rospy.spin()
