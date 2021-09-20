@@ -105,7 +105,7 @@ class Loader:
 
         import time
         start = time.time()
-        while (time.time() - start) < 0.4:
+        while (time.time() - start) < 0.45:
             pub.publish(vel_msg)
 
         rospy.loginfo(f"Sucess vel msg pub")
@@ -152,6 +152,67 @@ class Loader:
         else:
             return False
 
+    def get_lidar_value(self, idxes:list = [], left_thr=0.3, right_thr=0.6) -> tuple:
+        msg = rospy.wait_for_message("/scan", LaserScan, timeout=2)
+        rospy.loginfo(f"Got ... range length : {len(msg.ranges)}")
+        lidar_values = [ msg.ranges[idx] for idx in idxes ] if idxes else msg.ranges
+        lidar_values = tuple(lidar_values)
+        rospy.loginfo(f"Return ... lidar val : {lidar_values}")
+        return lidar_values
+
+    def enter_with_lidar(self, criteria_vales: list = (22, 202), range_degree: int = 12, left_thr= 1., right_thr = 1.):
+        left_criteria, right_criteria = criteria_vales
+        # left_lidar_criterias = [left_criteria + i for i in range(range_degree // 2 * -1, range_degree // 2 + 1)]
+        # right_lidar_criterais = [right_criteria + i for i in range(range_degree // 2 * -1, range_degree // 2 + 1)]
+        # lidar_values = self.get_lidar_value(left_lidar_criterias.extend(right_lidar_criterais))
+
+        # left, right = min(lidar_values[:len(lidar_values) // 2]), min(lidar_values[len(lidar_values) // 2:])
+        # rospy.loginfo(f"Got ... Left lidar get : {left} at {list(lidar_values[:len(lidar_values) // 2]).index(left)}")
+        # rospy.loginfo(f"Got ... Right lidar get : {right} at {list(lidar_values[len(lidar_values) // 2:]).index(right)}")
+        left, right = 777, 777
+        while left > left_thr or right > right_thr:
+            left, right = self.get_lidar_value((left_criteria, right_criteria))
+
+            if left < left_thr:
+                if right > right_thr:
+                    self.go_with_vel(angular_vel=[0., 0., -0.07])
+                else:
+                    self.go_with_vel(linear_vel=[0.07, 0., 0.])
+                    
+            elif right < right_thr:
+                if left > left_thr:
+                    self.go_with_vel(angular_vel=[0., 0., 0.07])
+                else:
+                    self.go_with_vel(linear_vel=[0.07, 0., 0.])
+
+            else:
+                self.go_with_vel(linear_vel=[0.07, 0., 0.])
+            
+        rospy.sleep(3)
+
+        left, right = 777, 777
+        while left > left_thr or right > right_thr:
+            left, right = self.get_lidar_value((left_criteria, right_criteria))
+
+            if left < left_thr:
+                if right > right_thr:
+                    self.go_with_vel(angular_vel=[0., 0., -0.07])
+                else:
+                    self.go_with_vel(linear_vel=[0.07, 0., 0.])
+                    
+            elif right < right_thr:
+                if left > left_thr:
+                    self.go_with_vel(angular_vel=[0., 0., 0.07])
+                else:
+                    self.go_with_vel(linear_vel=[0.07, 0., 0.])
+
+            else:
+                self.go_with_vel(linear_vel=[0.07, 0., 0.])
+        
+        rospy.sleep(7)
+
+        self.go_with_vel()
+
     def enter_rolltainer(self):
         import math
         # target_product_name = "blue"
@@ -171,17 +232,9 @@ class Loader:
         self.go_with_vel(linear_vel=[0., 0., 0.])
         clock_dir ^= True
         self.rotate(0.2, target_radian, degree=False, clock_wise=clock_dir)
-        self.go_with_vel(linear_vel=[0.5, 0., 0.])
-
-    def read_lidar(self):
-        msg = rospy.wait_for_message("/scan", LaserScan, timeout=2)
-        rospy.loginfo(f"{msg.ranges}")
-        rospy.loginfo(f"range len : {len(msg.ranges)}")
-        rospy.loginfo(f"max range val :{max(msg.ranges)}")
-        range_list = list(msg.ranges)
-        rospy.loginfo(f"max index : {range_list.index(max(msg.ranges))}")
-
+        self.go_with_vel(linear_vel=[0.7, 0., 0.])
         
+        rospy.sleep(7)
 
     def escape_rolltainer(self):
         pass
@@ -254,8 +307,14 @@ if __name__ == "__main__":
     #         rospy.loginfo("not matched")
     
     # entering test
-    # loader.enter_rolltainer()
-    while True:
-        loader.read_lidar()
+    loader.enter_rolltainer()
+    # while True:
+    #     loader.get_lidar_value(idxes=(22, 201, 202,203,204))
+
+    # entering with lidar test
+    loader.enter_with_lidar()
+
+    ret = loader.lift_up_down(target_pos=10.0, timeout=10.)
+    # rospy.loginfo("Lift down Test Success") if ret else rospy.loginfo("Lift down Test Fail")
 
     rospy.spin()
