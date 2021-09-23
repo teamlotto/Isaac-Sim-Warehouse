@@ -1,24 +1,21 @@
 #!/usr/bin/env python3
 
-from ast import literal_eval
-from logging import RootLogger, error
-from numpy.core.numeric import roll
-from yaml import load
-from rospy.core import loginfo, rospyinfo
-from sensor_msgs.msg import JointState, LaserScan, Image
-from way_points_manager import WayPointsManager
+from rospy.topics import Publisher
+from sensor_msgs.msg import JointState
 from move_control import MoveController
-from geometry_msgs.msg import Twist
+from recognize import Recognizer
 import rospy
 import numpy as np
 
 
 class Loader:
-    def __init__(self, joint_name: str = "lift_joint"):
+    def __init__(self, recognizer, move_controller, joint_name: str = "lift_joint"):
         self.joint_name = joint_name
         self.joint_command = JointState()
         self.joint_command.name = [self.joint_name]
         self.roll, self.pitch, self.yaw = 0., 0., 0.
+        self.recognizer = recognizer
+        self.move_controller = move_controller
 
     def lift_up_down(self, target_pos: float = 0.0, timeout: float = 3.) -> bool:
         """
@@ -49,192 +46,186 @@ class Loader:
         
         return True
 
-    def rotate(self, angluar_speed, target_angle, extra_val = 56, clock_wise=True, degree=False):
-        import math
-        PI = math.pi
-        pub = rospy.Publisher("/cmd_vel", Twist, queue_size=1)
-        vel_msg = Twist()
-        try:
-            rad_speed = angluar_speed * PI / 180 if degree else angluar_speed
-            rad_angle = target_angle * PI / 180 if degree else target_angle
-            rad_angle += extra_val * PI / 180
-            rospy.loginfo(f"Plus extra_val : {extra_val} rad/s")
-
-            vel_msg.linear.x = 0
-            vel_msg.linear.y = 0
-            vel_msg.linear.z = 0
-            vel_msg.angular.x = 0
-            vel_msg.angular.y = 0
-
-            if clock_wise :
-                vel_msg.angular.z = -abs(rad_speed)
-            else:
-                vel_msg.angular.z = abs(rad_speed)
-
-            import time
-            current_angle = 0
-            prev_time = time.time()
-            rate = rospy.Rate(10)
-            while(current_angle < rad_angle):
-                rospy.loginfo(f"Rotating ... current_angle {current_angle} -> target_angle {rad_angle}")
-                pub.publish(vel_msg)
-                current_angle = rad_speed * (time.time() - prev_time)
-                rate.sleep()
-            
-            vel_msg.angular.z = 0
-            pub.publish(vel_msg)
-            rospy.loginfo(f"Rotating Success")
-        except Exception as e:
-            rospy.loginfo(f"Error : {e}")
-            return False
-
-        return True
-
-    def go_with_vel(self, angular_vel=[0., 0., 0.], linear_vel=[0., 0., 0.]):
-        rospy.loginfo(f"Go with angular_vel :{angular_vel}")
-        rospy.loginfo(f"Go with linear_vel :{linear_vel}")
-        pub = rospy.Publisher("/cmd_vel", Twist, queue_size=1)
-        vel_msg = Twist()
-        vel_msg.angular.x = angular_vel[0]
-        vel_msg.angular.y = angular_vel[1]
-        vel_msg.angular.z = angular_vel[2]
-        vel_msg.linear.x = linear_vel[0]
-        vel_msg.linear.y = linear_vel[1]
-        vel_msg.linear.z = linear_vel[2]
-        rospy.loginfo(f"vel_msg : \n{vel_msg}")
-
-        import time
-        start = time.time()
-        while (time.time() - start) < 0.45:
-            pub.publish(vel_msg)
-
-        rospy.loginfo(f"Sucess vel msg pub")
-
-    def get_bbox_info(self) -> dict:
-        from darknet_ros_msgs.msg import BoundingBoxes
-        from collections import defaultdict
-        
-        msg = rospy.wait_for_message("/darknet_ros/bounding_boxes", BoundingBoxes, timeout=2)
-        bbox_dict = defaultdict(list)
-        [ bbox_dict[info.Class].append((round(info.probability, 3), info.xmin, info.ymin, info.xmax, info.ymax)) for info in msg.bounding_boxes ]
-        
-        return bbox_dict
-
-    def get_bbox_center(self, class_name: str) -> dict:
-        bbox_dict = self.get_bbox_info()
-        center_dict = {}
-        for idx, infos in enumerate(bbox_dict[class_name]):
-            _, xmin, ymin, xmax, ymax = infos
-            center_dict[idx] = (xmin + (xmax - xmin) // 2, ymin + (ymax - ymin) // 2)
-        
-        return center_dict
-
-    def get_matched_rolltianer_center(self, product_name: str) -> tuple:
+    def get_matched_rolltianer_center(self, product_name: str, width_thr: int=175):
         """
         해당 제품의 롤테이너 입구의 센터를 알려주는 함수
         왼쪽 순서대로 rolltainer의 bbox 중앙좌표와 제품의 bbox 중앙좌표의 차이가 가장 작은 것과 매칭 시켜준다.
         매칭의 결과는 중앙 좌표의 매칭이다.
         """
-        rolltainer_center_dict = self.get_bbox_center("rolltainer")
-        product_center_dict = self.get_bbox_center(product_name)
+        rolltainer_center_dict = self.recognizer.get_bbox_center("rolltainer", width_thr=width_thr)
+        product_center_dict = self.recognizer.get_bbox_center(product_name)
         rospy.loginfo(f"product {product_name} , {product_center_dict}")
-        prd_x_center, _ = product_center_dict[0]
-        diff_list = list(map(lambda x: (abs(prd_x_center - x[0]), x[1]), rolltainer_center_dict.values()))
-        matched_rolltainer_center = rolltainer_center_dict[diff_list.index(min(diff_list))]
+        if product_center_dict != {} and rolltainer_center_dict != {}:
+            idx_key = min(product_center_dict.keys())
+            prd_x_center, _ = product_center_dict[idx_key]
+            diff_list = list(map(lambda x: (abs(prd_x_center - x[0])), rolltainer_center_dict.values()))
+            rospy.loginfo(f"Test diff list : {diff_list}")
+            target_idx = diff_list.index(min(diff_list))
+            matched_rolltainer_center = rolltainer_center_dict[target_idx]
 
-        return matched_rolltainer_center
-        
-    def match_image_center(self, center, img_hw: tuple = (1280, 750), error_bound = 3):
-        w, _ = img_hw
-        rospy.loginfo(f"Matching center ... {w // 2 - error_bound} {center[0]} {w // 2 + error_bound}")
-        if w // 2 - error_bound < center[0] < w // 2 + error_bound:
-            return True
-        else:
-            return False
+            return target_idx, matched_rolltainer_center
+        return None, None
 
-    def get_lidar_value(self, idxes:list = [], left_thr=0.3, right_thr=0.6) -> tuple:
-        msg = rospy.wait_for_message("/scan", LaserScan, timeout=2)
-        rospy.loginfo(f"Got ... range length : {len(msg.ranges)}")
-        lidar_values = [ msg.ranges[idx] for idx in idxes ] if idxes else msg.ranges
-        lidar_values = tuple(lidar_values)
-        rospy.loginfo(f"Return ... lidar val : {lidar_values}")
-        return lidar_values
+    def get_matched_rolltainer_width(self, cls_name: str, target_idx:int, width_thr:int=175):
+        bbox_width_dict = self.recognizer.get_bbox_width(cls_name, width_thr=width_thr)
+        if bbox_width_dict != {} and target_idx in bbox_width_dict.keys():
+            return bbox_width_dict[target_idx]
+        return None
 
-    def enter_with_lidar(self, criteria_vales: list = (22, 202), range_degree: int = 12, left_thr= 1., right_thr = 1.):
+    def enter_with_lidar(self, criteria_vales: list = (22, 202), range_degree: int = 12, left_thr= 1.2, right_thr = 1.2, timeout:int =30):
         left_criteria, right_criteria = criteria_vales
-        # left_lidar_criterias = [left_criteria + i for i in range(range_degree // 2 * -1, range_degree // 2 + 1)]
-        # right_lidar_criterais = [right_criteria + i for i in range(range_degree // 2 * -1, range_degree // 2 + 1)]
-        # lidar_values = self.get_lidar_value(left_lidar_criterias.extend(right_lidar_criterais))
-
-        # left, right = min(lidar_values[:len(lidar_values) // 2]), min(lidar_values[len(lidar_values) // 2:])
-        # rospy.loginfo(f"Got ... Left lidar get : {left} at {list(lidar_values[:len(lidar_values) // 2]).index(left)}")
-        # rospy.loginfo(f"Got ... Right lidar get : {right} at {list(lidar_values[len(lidar_values) // 2:]).index(right)}")
-        left, right = 777, 777
-        while left > left_thr or right > right_thr:
-            left, right = self.get_lidar_value((left_criteria, right_criteria))
-
-            if left < left_thr:
-                if right > right_thr:
-                    self.go_with_vel(angular_vel=[0., 0., -0.07])
+        def control_with_lidar(left_angular_vel:list, left_linear_vel:list, right_angular_vel:list, right_linear_vel:list, center_linear_vel:list =[0.07, 0., 0.], timeout:int = 30):
+            import time
+            left, right = 777, 777
+            start = time.time()
+            is_timeout = False
+            while left > left_thr or right > right_thr:
+                left, right = self.recognizer.get_lidar_value((left_criteria, right_criteria))
+                
+                if left < left_thr:
+                    if right > right_thr:
+                        if left < 0.14:
+                            rospy.loginfo("So Close, Took care of it -> time out ")
+                            is_timeout = True
+                            break
+                        else:
+                            self.move_controller.go_with_vel(angular_vel=left_angular_vel)
+                    else:
+                        self.move_controller.go_with_vel(linear_vel=left_linear_vel)
+                        
+                elif right < right_thr:
+                    if left > left_thr:
+                        if right < 0.14:
+                            rospy.loginfo("So Close, Took care of it -> time out ")
+                            is_timeout = True
+                            break
+                        else:
+                            self.move_controller.go_with_vel(angular_vel=right_angular_vel)
+                    else:
+                        self.move_controller.go_with_vel(linear_vel=right_linear_vel)
                 else:
-                    self.go_with_vel(linear_vel=[0.07, 0., 0.])
-                    
-            elif right < right_thr:
-                if left > left_thr:
-                    self.go_with_vel(angular_vel=[0., 0., 0.07])
-                else:
-                    self.go_with_vel(linear_vel=[0.07, 0., 0.])
+                    self.move_controller.go_with_vel(linear_vel=center_linear_vel)
 
-            else:
-                self.go_with_vel(linear_vel=[0.07, 0., 0.])
-            
+                rospy.loginfo(f"Time ... {time.time() - start}")
+                if time.time() - start > timeout:
+                    rospy.loginfo("TIme out")
+                    is_timeout = True
+                    break
+            return is_timeout
+
+        self.move_controller.go_with_vel(linear_vel=[0.4, 0., 0.])
+        rospy.sleep(4)
+        ret = control_with_lidar(left_angular_vel=[0., 0., -0.07], left_linear_vel=[0.07, 0., 0.], right_angular_vel=[0., 0., 0.07], right_linear_vel=[0.07, 0., 0.], timeout=timeout)
+        if ret:
+            return False
         rospy.sleep(3)
+        ret = control_with_lidar(left_angular_vel=[0., 0., -0.07], left_linear_vel=[0.07, 0., 0.], right_angular_vel=[0., 0., 0.07], right_linear_vel=[0.07, 0., 0.], timeout=timeout)
+        if ret:
+            return False
+        rospy.sleep(7)
+        self.move_controller.go_with_vel()
 
-        left, right = 777, 777
-        while left > left_thr or right > right_thr:
-            left, right = self.get_lidar_value((left_criteria, right_criteria))
+        return True
+        
+    def enter_with_cam(self, target_product_name:str = "green", function_timeout: float = 28., left_case_timeout: float= 2., right_case_timeout: float = 2., bbox_width_thr: int = 670):
+        def go_to_center_with_cam(cur_center, angular_vel: list, linear_vel: list):
+            self.move_controller.go_with_vel(angular_vel=angular_vel, linear_vel=linear_vel)
+            _, tmp = self.get_matched_rolltianer_center(target_product_name, width_thr=280)
+            matched_center = tmp if tmp is not None else cur_center
+            return matched_center
 
-            if left < left_thr:
-                if right > right_thr:
-                    self.go_with_vel(angular_vel=[0., 0., -0.07])
-                else:
-                    self.go_with_vel(linear_vel=[0.07, 0., 0.])
-                    
-            elif right < right_thr:
-                if left > left_thr:
-                    self.go_with_vel(angular_vel=[0., 0., 0.07])
-                else:
-                    self.go_with_vel(linear_vel=[0.07, 0., 0.])
+        import time
+        self.move_controller.go_with_vel(linear_vel=[0.5, 0., 0.])
+        rospy.sleep(4)
+        img_center = self.recognizer.img_w_h[0] // 2, self.recognizer.img_w_h[1] // 2
+        center = (0, 0)
+        rolltainer_bbox_width = 0
+        prg_start = time.time()
+        while center is not None and time.time() - prg_start < function_timeout and rolltainer_bbox_width < bbox_width_thr:
+            start = time.time()
+            idx, tmp = self.get_matched_rolltianer_center(target_product_name, width_thr=280)
+            center = tmp if tmp is not None else center
+            rospy.loginfo(f"mtached center : {center}")
+            if idx is not None:
+                tmp = self.get_matched_rolltainer_width("rolltainer", idx, width_thr=280)
+                rolltainer_bbox_width = tmp if tmp is not None else rolltainer_bbox_width
+            else:
+                pass
+            rospy.loginfo(f"bbox width : {rolltainer_bbox_width}")
+            
+            left_right = self.recognizer.is_left_right(img_center, center, error_bound=16)
+            if left_right:
+                rospy.loginfo("Left")
+                while not self.recognizer.match_image_center(center, error_bound=10) and time.time() - start < left_case_timeout:
+                    center = go_to_center_with_cam(cur_center=center, angular_vel=[0., 0., 0.1], linear_vel=[0.2, 0., 0.])
+            elif left_right is None:
+                rospy.loginfo("Good Pose")
+                center = go_to_center_with_cam(cur_center=center, angular_vel=[0., 0., 0.], linear_vel=[0.3, 0., 0.])
 
             else:
-                self.go_with_vel(linear_vel=[0.07, 0., 0.])
-        
-        rospy.sleep(7)
+                rospy.loginfo("Right")
+                while not self.recognizer.match_image_center(center, error_bound=10) and time.time() - start < right_case_timeout:
+                    center = go_to_center_with_cam(cur_center=center, angular_vel=[0., 0., -0.1], linear_vel=[0.2, 0., 0.])
 
-        self.go_with_vel()
-
-    def enter_rolltainer(self):
+        rospy.loginfo("enter with cam End...")
+        self.move_controller.go_with_vel()
+                
+    def enter_rolltainer(self, target_product_name:str = "blue", direction: str = "right"):
+        rospy.sleep(2)
         import math
-        # target_product_name = "blue"
-        target_product_name = "red"
-        # direction = "right"
-        direction = "left"
-        center = (-1, -1)
-        clock_dir = True if direction == "right" else False
-        target_radian = 90 * 2 * math.pi / 360
-        # rotate_ret = self.rotate(0.2, target_radian, degree=False, clock_wise=clock_dir)
-        rotate_ret = True
-        self.go_with_vel(linear_vel=[0.5, 0., 0.]) if rotate_ret else self.go_with_vel(linear_vel=[0., 0., 0.])
+        import time
+        import os
+        from std_msgs.msg import Int32
 
-        while not self.match_image_center(center):
-            center = self.get_matched_rolltianer_center(target_product_name)
+        if direction == "right":
+            clock_dir = True
+        elif direction == "left":
+            clock_dir = False
+        else:
+            clock_dir = None
+        rospy.loginfo(f"target_product_name : {target_product_name}")
+        rospy.loginfo(f"direction : {direction}")
+        pub_dict = {"middle": 0, "right": 2, "left": 1}
+        topic_name = "which_launch"
+        if clock_dir is not None:
+            target_radian = 90 * math.pi / 180
+
+            os.system(f"rostopic pub -1 {topic_name} std_msgs/Int32 {pub_dict[direction]}")
+            rospy.sleep(5)
+            rospy.loginfo(f"Send darknet_ros mode : {pub_dict[direction]}")
+            _ = self.move_controller.rotate(0.2, target_radian, degree=False, clock_wise=clock_dir)
+
+            self.move_controller.go_with_vel(linear_vel=[0.5, 0., 0.])
+            center = (-1, -1)
+            while not self.recognizer.match_image_center(center, error_bound=10):
+                _, tmp = self.get_matched_rolltianer_center(target_product_name)
+                center = tmp if tmp is not None else center
+
+            self.move_controller.go_with_vel()
+            clock_dir ^= True
+            _ = self.move_controller.rotate(0.2, target_radian, degree=False, clock_wise=clock_dir)
+
+        os.system(f"rostopic pub -1 {topic_name} std_msgs/Int32 {pub_dict['middle']}")
+        rospy.sleep(5)
         
-        self.go_with_vel(linear_vel=[0., 0., 0.])
-        clock_dir ^= True
-        self.rotate(0.2, target_radian, degree=False, clock_wise=clock_dir)
-        self.go_with_vel(linear_vel=[0.7, 0., 0.])
+
+        while True:
+            self.enter_with_cam(target_product_name=target_product_name, function_timeout=12., left_case_timeout=2., right_case_timeout=2.)
+            result = self.enter_with_lidar(criteria_vales=[22, 202], left_thr=1., right_thr=1., timeout=180)
+            if result:
+                break
+            else:
+                self.move_controller.go_with_vel(linear_vel=[-0.7, 0. ,0.])
+                rospy.sleep(11)
         
         rospy.sleep(7)
+        rospy.loginfo("Entering Container Sucess !")
+
+        # ret = loader.lift_up_down(target_pos=10.0, timeout=10.)
+        # rospy.loginfo("Lift up Test Success") if ret else rospy.loginfo("Lift up Test Fail")
+        # rospy.sleep(3)
+        # ret = loader.lift_up_down(target_pos=0.0, timeout=10.)
+        # rospy.loginfo("Lift down Test Success") if ret else rospy.loginfo("Lift up Test Fail")
 
     def escape_rolltainer(self):
         pass
@@ -242,8 +233,10 @@ class Loader:
 if __name__ == "__main__":
     import rospy
     rospy.init_node("Loader_test")
+    from move_control import MoveController
+    from recognize import Recognizer
 
-    loader = Loader("lift_joint")
+    loader = Loader(move_controller=MoveController(), recognizer=Recognizer(), joint_name="lift_joint")
 
     # loader lift_up test
     ## Success
@@ -307,14 +300,18 @@ if __name__ == "__main__":
     #         rospy.loginfo("not matched")
     
     # entering test
-    loader.enter_rolltainer()
+    # loader.enter_with_cam()
     # while True:
     #     loader.get_lidar_value(idxes=(22, 201, 202,203,204))
 
     # entering with lidar test
-    loader.enter_with_lidar()
+    # loader.enter_with_lidar()
 
-    ret = loader.lift_up_down(target_pos=10.0, timeout=10.)
+    # ret = loader.lift_up_down(target_pos=10.0, timeout=10.)
     # rospy.loginfo("Lift down Test Success") if ret else rospy.loginfo("Lift down Test Fail")
+    # rospy.sleep(5)
+    # ret = loader.lift_up_down(target_pos=0., timeout=10.)
 
+    loader.enter_rolltainer(target_product_name="blue", direction="right")
+    # loader.enter_with_lidar()
     rospy.spin()

@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 import rospy
 import actionlib
 from actionlib import *
@@ -62,17 +63,65 @@ class MoveController:
             rospy.loginfo("LOTTI is not arrived in WaitZone")
             return False
 
-    def go_straight(joint_names: list, vel):
+    def go_with_vel(self, angular_vel=[0., 0., 0.], linear_vel=[0., 0., 0.]):
+        rospy.loginfo(f"Go with angular_vel :{angular_vel}")
+        rospy.loginfo(f"Go with linear_vel :{linear_vel}")
+        pub = rospy.Publisher("/cmd_vel", Twist, queue_size=10)
+        vel_msg = Twist()
+        vel_msg.angular.x = angular_vel[0]
+        vel_msg.angular.y = angular_vel[1]
+        vel_msg.angular.z = angular_vel[2]
+        vel_msg.linear.x = linear_vel[0]
+        vel_msg.linear.y = linear_vel[1]
+        vel_msg.linear.z = linear_vel[2]
+
+        import time
+        start = time.time()
+        while (time.time() - start) < 0.5:
+            pub.publish(vel_msg)
+
+        rospy.loginfo(f"Sucess vel msg pub")
+
+    def rotate(self, angluar_speed, target_angle, extra_val = 56, clock_wise=True, degree=False) -> bool:
+        import math
+        PI = math.pi
         pub = rospy.Publisher("/cmd_vel", Twist, queue_size=1)
         vel_msg = Twist()
-        vel_msg.angular.x = 0
-        vel_msg.angular.y = 0
-        vel_msg.angular.z = 0
-        vel_msg.linear.y = 0
-        vel_msg.linear.z = 0
-        vel_msg.linear.x = vel
+        try:
+            rad_speed = angluar_speed * PI / 180 if degree else angluar_speed
+            rad_angle = target_angle * PI / 180 if degree else target_angle
+            rad_angle += extra_val * PI / 180
+            rospy.loginfo(f"Plus extra_val : {extra_val} rad/s")
 
-        pub.publish(vel_msg)
+            vel_msg.linear.x = 0
+            vel_msg.linear.y = 0
+            vel_msg.linear.z = 0
+            vel_msg.angular.x = 0
+            vel_msg.angular.y = 0
+
+            if clock_wise :
+                vel_msg.angular.z = -abs(rad_speed)
+            else:
+                vel_msg.angular.z = abs(rad_speed)
+
+            import time
+            current_angle = 0
+            prev_time = time.time()
+            rate = rospy.Rate(10)
+            while(current_angle < rad_angle):
+                rospy.loginfo(f"Rotating ... current_angle {current_angle} -> target_angle {rad_angle}")
+                pub.publish(vel_msg)
+                current_angle = rad_speed * (time.time() - prev_time)
+                rate.sleep()
+            
+            vel_msg.angular.z = 0
+            pub.publish(vel_msg)
+            rospy.loginfo(f"Rotating Success")
+        except Exception as e:
+            rospy.loginfo(f"Error : {e}")
+            return False
+
+        return True
 
         
 
@@ -102,6 +151,10 @@ if __name__ == "__main__":
     # rospy.loginfo("Test Success") if result else rospy.loginfo("Test Fail")
 
     # down
-    result = controller.move_goods_zone([(0.386627912521, 6.69019269943, 0), (0, 0, 1., 0)], 59)
+    from way_points_manager import WayPointsManager
+    wp = WayPointsManager()
+    pose = wp.get_goods_pose("goods_zone3")
+    rospy.loginfo(f"pose : {pose}")
+    result = controller.move_goods_zone(pose, 59)
     rospy.loginfo("Test Success") if result else rospy.loginfo("Test Fail")
     rospy.spin()
