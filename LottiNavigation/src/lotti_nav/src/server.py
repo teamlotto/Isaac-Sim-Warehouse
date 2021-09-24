@@ -10,7 +10,7 @@ def callback(req):
     zone_goods = [9, 6]
     zone_def = ['goods_zone2', 'goods_zone3']
     if req.request == 'ready':
-        response = zone_def[zone_goods.index(max(zone_goods))]
+        response = zone_def[zone_goods.index(min(zone_goods))]
         rospy.loginfo(f"Server will sending Response to LOTTI : {response}")
     elif req.request != 'ready' and req.request != None:
         queue_state = eval(f'q_{req.request}')
