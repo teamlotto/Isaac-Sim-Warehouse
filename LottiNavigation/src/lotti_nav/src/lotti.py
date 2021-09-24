@@ -20,6 +20,8 @@ class Lotti:
         self.state = StateManager.Recognition
         self.destination = None
         self.first_operate = True
+        self.lifting = False
+        self.target_product = None
         self.priority = {"red": 0, "green": 1, "blue": 2}
         self.priority_q = []
 
@@ -29,7 +31,7 @@ class Lotti:
             rospy.wait_for_service("Where_I_go", timeout=timeout)
             rospy.loginfo("Success Checking Service Server !")
             des_requester = rospy.ServiceProxy("Where_I_go", WhereIgo)
-            rospy.loginfo(f"Lotti request destination Where I go ?")
+            rospy.loginfo(f"Lotti request destination Where I go ? : {request}")
             destination = des_requester(request).destination
             rospy.loginfo(f"Lotti was Recevied destination {destination}")
         except rospy.ServiceException as e:
@@ -44,7 +46,7 @@ class Lotti:
             self.first_operate = False
             pass
         else:
-            self.destination = self.request_destination(1)
+            self.destination = self.request_destination("ready")
 
         if self.destination is None:
             pose = self.zone_manager.get_wait_pose(wait_zone)
@@ -92,8 +94,18 @@ class Lotti:
 
     def operate_load_case(self):
         rospy.loginfo("Load State")
-        _, target_product_name, location = heapq.heappop(self.priority_q)
+        self.destination = self.request_destination(self.target_product_name)
+        while self.destination is None:
+            if self.priority_q == []:
+                self.state = StateManager.Wait
+                return
+
+            _, self.target_product_name, location = heapq.heappop(self.priority_q)
+            self.destination = self.request_destination(self.target_product_name)
+
+        rospy.loginfo(f"{self.target_product_name}'s destination : {self.destination}")
         self.priority_q = []
+
         direction = "middle"
         if location:
             direction = "left"
@@ -102,11 +114,13 @@ class Lotti:
         else:
             direction = "right"
 
-        self.loader.enter_rolltainer(target_product_name=target_product_name, direction=direction)
+        self.loader.enter_rolltainer(target_product_name=self.target_product_name, direction=direction)
         _ = self.loader.lift_up_down(target_pos=4.0, timeout=10.)
         self.loader.escape_rolltainer()
-        pose = self.zone_manager.get_load_pose(f"load_{target_product_name}")
+        
+        pose = self.zone_manager.get_load_pose(self.destination)
         ret = self.move_controller.move_load_zone(pose)
+        self.destination = None
 
         while not ret:
             ret = self.move_controller.move_load_zone(pose)
