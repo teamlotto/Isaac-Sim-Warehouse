@@ -1,4 +1,4 @@
-int64 request
+string request
 ---
 string destination
 
