@@ -94,7 +94,10 @@ class Lotti:
 
     def operate_load_case(self):
         rospy.loginfo("Load State")
+        
+        _, self.target_product_name, location = heapq.heappop(self.priority_q)
         self.destination = self.request_destination(self.target_product_name)
+
         while self.destination is None:
             if self.priority_q == []:
                 self.state = StateManager.Wait
@@ -102,7 +105,7 @@ class Lotti:
 
             _, self.target_product_name, location = heapq.heappop(self.priority_q)
             self.destination = self.request_destination(self.target_product_name)
-
+        
         rospy.loginfo(f"{self.target_product_name}'s destination : {self.destination}")
         self.priority_q = []
 
