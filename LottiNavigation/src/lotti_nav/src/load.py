@@ -114,7 +114,7 @@ class Loader:
             return is_timeout
 
         self.move_controller.go_with_vel(linear_vel=[0.4, 0., 0.])
-        rospy.sleep(4)
+        rospy.sleep(2)
         ret = control_with_lidar(left_angular_vel=[0., 0., -0.07], left_linear_vel=[0.07, 0., 0.], right_angular_vel=[0., 0., 0.07], right_linear_vel=[0.07, 0., 0.], timeout=timeout)
         if ret:
             return False
@@ -208,10 +208,9 @@ class Loader:
         os.system(f"rostopic pub -1 {topic_name} std_msgs/Int32 {pub_dict['middle']}")
         rospy.sleep(5)
         
-
         while True:
             self.enter_with_cam(target_product_name=target_product_name, function_timeout=12., left_case_timeout=2., right_case_timeout=2.)
-            result = self.enter_with_lidar(criteria_vales=[22, 202], left_thr=1., right_thr=1., timeout=180)
+            result = self.enter_with_lidar(criteria_vales=[22, 202], left_thr=1., right_thr=1., timeout=90.)
             if result:
                 break
             else:
@@ -221,14 +220,10 @@ class Loader:
         rospy.sleep(7)
         rospy.loginfo("Entering Container Sucess !")
 
-        # ret = loader.lift_up_down(target_pos=10.0, timeout=10.)
-        # rospy.loginfo("Lift up Test Success") if ret else rospy.loginfo("Lift up Test Fail")
-        # rospy.sleep(3)
-        # ret = loader.lift_up_down(target_pos=0.0, timeout=10.)
-        # rospy.loginfo("Lift down Test Success") if ret else rospy.loginfo("Lift up Test Fail")
-
     def escape_rolltainer(self):
-        pass
+        self.move_controller.go_with_vel(linear_vel=[-0.5, 0., 0.])
+        rospy.sleep(15)
+        self.move_controller.go_with_vel()
 
 if __name__ == "__main__":
     import rospy

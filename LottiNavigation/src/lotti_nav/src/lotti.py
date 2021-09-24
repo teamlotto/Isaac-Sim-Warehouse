@@ -5,18 +5,23 @@ from state import StateManager
 from move_control import MoveController
 from way_points_manager import WayPointsManager
 from load import Loader
+from recognize import Recognizer
 from std_msgs.msg import String
 from lotti_nav.srv import WhereIgo
 import rospy
+import heapq
 
 class Lotti:
     def __init__(self):
         self.zone_manager = WayPointsManager()
         self.move_controller = MoveController()
-        self.loader = Loader()
-        self.state = StateManager.Wait
+        self.recognizer = Recognizer()
+        self.loader = Loader(move_controller=self.move_controller, recognizer=self.recognizer)
+        self.state = StateManager.Recognition
         self.destination = None
         self.first_operate = True
+        self.priority = {"red": 0, "green": 1, "blue": 2}
+        self.priority_q = []
 
     def request_destination(self, request, timeout=10):
         try:
@@ -60,19 +65,58 @@ class Lotti:
             self.state = StateManager.Wait
 
     def operate_recognition_case(self):
+        import os
         rospy.loginfo("Recognition State")
+        rospy.sleep(2)
+        pub_dict = {"middle": 0, "right": 2, "left": 1}
+        topic_name = "which_launch"
+        os.system(f"rostopic pub -1 {topic_name} std_msgs/Int32 {pub_dict['middle']}")
+        rospy.sleep(5)
+        bbox_dict = self.recognizer.get_bbox_info(width_thr=195)
+        while len(bbox_dict.keys()) < 1:
+            self.move_controller.go_with_vel(linear_vel=[0.55, 0., 0.])
+            rospy.sleep(5)
+            bbox_dict = self.recognizer.get_bbox_info(width_thr=195)
+
+        self.move_controller.go_with_vel()
+        for key, value in bbox_dict.items():
+            rospy.loginfo(f"Got ... Product : {key}, bbox : {value}\n")
+            if key != "rolltainer":
+                for _, xmin, _, xmax, _ in value:
+                    location = self.recognizer.is_left_right(center=(self.recognizer.img_w_h[0]//2, 0),
+                                                             current=(xmin + (xmax - xmin)//2, 0), error_bound=70.)
+                    heapq.heappush(self.priority_q, (self.priority[key], key, location))
+        
         self.state = StateManager.Load
         rospy.loginfo("Changing State Recognition to Load")
 
     def operate_load_case(self):
         rospy.loginfo("Load State")
-        self.loader.lift_up_down(target_pos=4.0, timeout=10.)
-        pose = self.zone_manager.get_load_pose('load_red')
-        rospy.loginfo(f"pose {pose}")
+        _, target_product_name, location = heapq.heappop(self.priority_q)
+        self.priority_q = []
+        direction = "middle"
+        if location:
+            direction = "left"
+        elif location is None:
+            direction = "middle"
+        else:
+            direction = "right"
+
+        self.loader.enter_rolltainer(target_product_name=target_product_name, direction=direction)
+        _ = self.loader.lift_up_down(target_pos=4.0, timeout=10.)
+        self.loader.escape_rolltainer()
+        pose = self.zone_manager.get_load_pose(f"load_{target_product_name}")
         ret = self.move_controller.move_load_zone(pose)
-        if ret:
-            self.loader.lift_up_down(target_pos=0.0, timeout=10.)
-            self.state = StateManager.Wait
+
+        while not ret:
+            ret = self.move_controller.move_load_zone(pose)
+
+        self.loader.lift_up_down(target_pos=0.0, timeout=10.)
+        rospy.sleep(2)
+        self.loader.escape_rolltainer()
+        self.state = StateManager.Wait
+        rospyinfo("Success Getting Off")
+        rospy.loginfo("Changing ... State Load to Wait")
 
     def operate(self):
         while True:
@@ -88,9 +132,12 @@ class Lotti:
             elif self.state == StateManager.Recognition:
                 self.operate_recognition_case()
 
-            # # Load State
+            # Load State
             elif self.state == StateManager.Load:
                 self.operate_load_case()
+
+            else:
+                break
         
 
 if __name__ == "__main__":
