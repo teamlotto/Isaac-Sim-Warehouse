@@ -1,6 +1,8 @@
-obstacle_range: 100
-raytrace_range: 3
-robot_radius: 0.4
+obstacle_range: 10
+raytrace_range: 10
+footprint: [[-0.4, -0.325], [-0.4, 0.325], [1.03, 0.325], [1.03, -0.325]]
+footprint_padding: 0.004
+# robot_radius: 0.4
 inflation_radius: 0.8
 observation_sources: laser_scan_sensor
-laser_scan_sensor: {sensor_frame: lidar, data_type: LaserScan, topic: /scan, marking: true, clearing: true}
+laser_scan_sensor: {sensor_frame: lidar, data_type: LaserScan, topic: /scan, marking: true, clearing: false}
