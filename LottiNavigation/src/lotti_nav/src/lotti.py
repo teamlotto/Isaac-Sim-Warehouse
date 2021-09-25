@@ -132,7 +132,7 @@ class Lotti:
         rospy.sleep(2)
         self.loader.escape_rolltainer()
         self.state = StateManager.Wait
-        rospyinfo("Success Getting Off")
+        rospy.loginfo("Success Getting Off")
         rospy.loginfo("Changing ... State Load to Wait")
 
     def operate(self):
