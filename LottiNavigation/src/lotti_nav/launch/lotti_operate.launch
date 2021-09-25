@@ -1,0 +1,8 @@
+<launch>
+
+  <!--- Run Lotti -->
+    <node pkg="lotti_nav" type="lotti.py" respawn="false" name="LOTTI" output="screen" />
+    <node pkg="lotti_nav" type="server.py" respawn="false" name="SERVER" output="screen" />
+    <node pkg="lotti_nav" type="darknet.py" respawn="false" name="DARKNET" />
+
+</launch>
