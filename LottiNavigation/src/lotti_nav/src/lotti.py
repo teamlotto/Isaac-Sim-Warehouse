@@ -17,7 +17,7 @@ class Lotti:
         self.move_controller = MoveController()
         self.recognizer = Recognizer()
         self.loader = Loader(move_controller=self.move_controller, recognizer=self.recognizer)
-        self.state = StateManager.Recognition
+        self.state = StateManager.Wait
         self.destination = None
         self.first_operate = True
         self.lifting = False
@@ -46,7 +46,7 @@ class Lotti:
             self.first_operate = False
             pass
         else:
-            self.destination = self.request_destination("ready")
+            self.destination = self.request_destination('ready')
 
         if self.destination is None:
             pose = self.zone_manager.get_wait_pose(wait_zone)
