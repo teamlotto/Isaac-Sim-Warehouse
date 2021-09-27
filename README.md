@@ -35,3 +35,15 @@ Develop for Controlling Robot in the Warehouse
 
 ## 4. Move Wait Zone
 ![waitzone](https://user-images.githubusercontent.com/69780812/134853881-ab8d8799-3db4-43f3-bfe5-6b50619f199e.gif)
+
+# Test
+```shell
+sh start_project_container.sh
+```
+- start docker container
+```shell
+roslaucnh lotti_nav move_base
+roslaucnh lotti_nav rviz
+roslaucnh lotti_nav lotti
+```
+- launch 3 files (Warning : Start Order)
