@@ -3,6 +3,7 @@ Develop for Controlling Robot in the Warehouse
 
 # Functions
 ## 1. Move Wait Zone
+![lotti_move_wait_zone](https://user-images.githubusercontent.com/69780812/134843314-ac8693e5-9fe1-422b-bc21-c97c05dbdc80.gif)
 
 ## 2. Move Goods Zone
 
