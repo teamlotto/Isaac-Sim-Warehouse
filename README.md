@@ -11,6 +11,8 @@ Develop for Controlling Robot in the Warehouse
 ![recognition](https://user-images.githubusercontent.com/69780812/134845295-2a4f372a-e6f3-4f5b-bfd5-1767c1931d67.gif)
 
 ## 3. Load Goods
+Priority Product : Red, Green, Blue Product
+Priority Direction : Left
 ### Turning to Target Goods (Convert to Left or Right Cam)
 ![turtt1](https://user-images.githubusercontent.com/69780812/134846452-e8fcd74e-0a13-443b-b873-cfc0ee38cfff.gif)
 ### Matching To Target Goods's Rolltainer and Move to it
