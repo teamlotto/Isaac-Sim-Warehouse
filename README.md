@@ -25,8 +25,13 @@ Develop for Controlling Robot in the Warehouse
 ![lidar](https://user-images.githubusercontent.com/69780812/134851911-3aa10103-282d-4709-86fa-9fa4ad6746fe.gif)
 
 ### Lifting Up Target Goods
+![lifting](https://user-images.githubusercontent.com/69780812/134853100-e15a0f5f-9b3f-42b4-a2fb-6141181fca87.gif)
 
 
-### Move to Target's Load Zone and Lifting Down Target Goods
+### Move to Target's Load Zone and Lifting Down, Escaping Target Goods
+![redzone](https://user-images.githubusercontent.com/69780812/134853591-55e8d022-5323-425a-b5f0-a0c2589832df.gif)
+![escape](https://user-images.githubusercontent.com/69780812/134853618-a9da8883-1a18-4919-8fbc-65d9f807a78e.gif)
+
+
 
 # Test
