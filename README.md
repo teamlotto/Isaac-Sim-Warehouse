@@ -22,8 +22,10 @@ Develop for Controlling Robot in the Warehouse
 ![asdfasdf111!!](https://user-images.githubusercontent.com/69780812/134847356-76aa92a9-a739-43ac-9f66-f7d568c70079.gif)
 
 ### Entering to Rolltainer with Lidar (Pose Fine Tuning)
+![lidar](https://user-images.githubusercontent.com/69780812/134851911-3aa10103-282d-4709-86fa-9fa4ad6746fe.gif)
 
 ### Lifting Up Target Goods
+
 
 ### Move to Target's Load Zone and Lifting Down Target Goods
 
