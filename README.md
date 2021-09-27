@@ -42,8 +42,8 @@ sh start_project_container.sh
 ```
 - start docker container
 ```shell
-roslaucnh lotti_nav move_base
-roslaucnh lotti_nav rviz
-roslaucnh lotti_nav lotti
+roslaucnh lotti_nav move_base.launch
+roslaucnh lotti_nav rviz.launch
+roslaucnh lotti_nav lotti_operate.launch
 ```
 - launch 3 files (Warning : Start Order)
