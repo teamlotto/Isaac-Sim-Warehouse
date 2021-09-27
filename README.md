@@ -2,16 +2,15 @@
 Develop for Controlling Robot in the Warehouse
 
 # Functions
-## 1. Move Wait Zone
 
-## 2. Move Goods Zone
+## 1. Move Goods Zone
 ![move_zone3](https://user-images.githubusercontent.com/69780812/134845081-dd31feb5-75cc-4130-b854-2db6fc269621.gif)
 
-## 3. Recognization
+## 2. Recognization
 ### Recognizing Goods 
 ![recognition](https://user-images.githubusercontent.com/69780812/134845295-2a4f372a-e6f3-4f5b-bfd5-1767c1931d67.gif)
 
-## 4. Load Goods
+## 3. Load Goods
 ### Turning to Target Goods (Convert to Left or Right Cam)
 ![turtt1](https://user-images.githubusercontent.com/69780812/134846452-e8fcd74e-0a13-443b-b873-cfc0ee38cfff.gif)
 ### Matching To Target Goods's Rolltainer and Move to it
@@ -32,6 +31,5 @@ Develop for Controlling Robot in the Warehouse
 ![redzone](https://user-images.githubusercontent.com/69780812/134853591-55e8d022-5323-425a-b5f0-a0c2589832df.gif)
 ![escape](https://user-images.githubusercontent.com/69780812/134853618-a9da8883-1a18-4919-8fbc-65d9f807a78e.gif)
 
-
-
-# Test
+## 4. Move Wait Zone
+![waitzone](https://user-images.githubusercontent.com/69780812/134853881-ab8d8799-3db4-43f3-bfe5-6b50619f199e.gif)
