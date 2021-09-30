@@ -1,6 +1,6 @@
 # Isaac-Sim-Warehouse
 Developing for Controlling Our AMR in the Simulation Warehouse
-# Youtbue
+# Youtube
 https://www.youtube.com/watch?v=RTxQUHCtFu8&t=22s
 
 # Functions
